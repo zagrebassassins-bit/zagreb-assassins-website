@@ -3,12 +3,18 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      const nav = document.querySelector(".nav");
+
+      if (window.scrollY > 40) {
+        nav?.classList.add("scrolled");
+      } else {
+        nav?.classList.remove("scrolled");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -17,9 +23,744 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <main>
+      {/* ================= NAVIGATION ================= */}
+
+      <nav className="nav">
+        <div className="navInner">
+
+          <a href="#home" className="brand">
+            <img
+              src="/images/logo.png.jpeg"
+              alt="Zagreb Assassins"
+            />
+          </a>
+
+          <button
+            className="menuButton"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+
+          <div className={`navLinks ${menuOpen ? "open" : ""}`}>
+
+            <a
+              href="#home"
+              onClick={() => setMenuOpen(false)}
+            >
+              HOME
+            </a>
+
+            <a
+              href="#history"
+              onClick={() => setMenuOpen(false)}
+            >
+              HISTORY
+            </a>
+
+            <a
+              href="#ground"
+              onClick={() => setMenuOpen(false)}
+            >
+              GROUND
+            </a>
+
+            <a
+              href="#join"
+              onClick={() => setMenuOpen(false)}
+            >
+              JOIN US
+            </a>
+
+            <a
+              href="#support"
+              onClick={() => setMenuOpen(false)}
+            >
+              SUPPORT
+            </a>
+
+          </div>
+        </div>
+      </nav>
+
+      {/* ================= HERO ================= */}
+
+      <section className="hero" id="home">
+
+        <video
+          className="heroVideo"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source
+            src="/videos/hero.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <div className="heroOverlay"></div>
+
+        <div className="heroContent">
+
+          <img
+            src="/images/logo.png.jpeg"
+            alt="Zagreb Assassins Cricket Club"
+            className="heroLogo"
+          />
+
+          <div className="heroKicker">
+            ZAGREB CRICKET CLUB
+          </div>
+
+          <h1>ZAGREB ASSASSINS</h1>
+
+          <p>
+            One Team. One Fight. One Family.
+          </p>
+
+          <a
+            href="#join"
+            className="enterBtn"
+          >
+            BECOME A MEMBER
+          </a>
+
+          <a
+            href="https://chat.whatsapp.com/ItcFiILa3B3LkTSkdpyTxY?s=sw&p=a&ilr=4&iam=2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whatsappBtn"
+          >
+            QUICK JOIN WHATSAPP
+          </a>
+
+        </div>
+      </section>
+
+      {/* ================= TEAM IMAGE ================= */}
+
+      <section className="teamSection">
+
+        <div className="teamImageWrap">
+
+          <img
+            src="/images/team.jpg.jpeg"
+            alt="Zagreb Assassins Team"
+            className="teamImage"
+          />
+
+          <div className="teamCaption">
+
+            <span>
+              ZAGREB ASSASSINS
+            </span>
+
+            <strong>
+              ONE TEAM. ONE FAMILY.
+            </strong>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ================= HISTORY ================= */}
+
+      <section
+        className="history"
+        id="history"
+      >
+
+        <div className="sectionHead">
+
+          <div className="sectionKicker">
+            OUR STORY
+          </div>
+
+          <h2 className="sectionTitle">
+            Built To Compete
+          </h2>
+
+          <p className="sectionText">
+            Zagreb Assassins is a cricket community
+            growing together in Zagreb. From our
+            achievements on the field to the future,
+            every player, supporter and friend is part
+            of the story.
+          </p>
+
+        </div>
+
+        <div className="timeline">
+
+          {/* 2023 ECS */}
+
+          <div className="timelineItem">
+
+            <div className="year">
+              2023
+            </div>
+
+            <h3>
+              ECS Champions
+            </h3>
+
+            <p>
+              Zagreb Assassins became ECS Champions,
+              marking a major achievement in the
+              club&apos;s cricket journey.
+            </p>
+
+          </div>
+
+          {/* 2023 CROATIAN CUP */}
+
+          <div className="timelineItem">
+
+            <div className="year">
+              2023
+            </div>
+
+            <h3>
+              Croatian Cup Winners
+            </h3>
+
+            <p>
+              Zagreb Assassins continued their success
+              by becoming Croatian Cup Winners.
+            </p>
+
+          </div>
+
+          {/* 2024 */}
+
+          <div className="timelineItem">
+
+            <div className="year">
+              2024
+            </div>
+
+            <h3>
+              The Beginning
+            </h3>
+
+            <p>
+              The foundation of Zagreb Assassins and
+              the beginning of a new cricket journey
+              in Zagreb.
+            </p>
+
+          </div>
+
+          {/* 2025 */}
+
+          <div className="timelineItem">
+
+            <div className="year">
+              2025
+            </div>
+
+            <h3>
+              Growing Stronger
+            </h3>
+
+            <p>
+              More players, more matches and a
+              stronger community around the club.
+            </p>
+
+          </div>
+
+          {/* 2026 */}
+
+          <div className="timelineItem">
+
+            <div className="year">
+              2026
+            </div>
+
+            <h3>
+              The Next Chapter
+            </h3>
+
+            <p>
+              A new season with bigger ambitions,
+              stronger teamwork and more cricket.
+            </p>
+
+          </div>
+
+          {/* FUTURE */}
+
+          <div className="timelineItem">
+
+            <div className="year">
+              FUTURE
+            </div>
+
+            <h3>
+              Our Ambition
+            </h3>
+
+            <p>
+              Build one of Zagreb&apos;s strongest
+              cricket communities and create
+              opportunities for everyone who loves
+              the game.
+            </p>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ================= GROUND ================= */}
+
+      <section
+        className="groundSection"
+        id="ground"
+      >
+
+        <div className="groundGrid">
+
+          <div className="groundImageWrap">
+
+            <img
+              src="/images/ground.png"
+              alt="Mladost Cricket Ground Zagreb"
+              className="groundImage"
+            />
+
+          </div>
+
+          <div className="groundContent">
+
+            <div className="sectionKicker">
+              OUR HOME
+            </div>
+
+            <h2 className="sectionTitle">
+              Mladost Cricket Ground
+            </h2>
+
+            <p className="sectionText">
+              Our home ground in Zagreb where the
+              team trains, competes and builds
+              unforgettable cricket moments.
+            </p>
+
+            <div className="groundDetails">
+
+              <p>
+                <strong>
+                  Ground:
+                </strong>
+                <br />
+                Mladost Cricket Ground
+              </p>
+
+              <p>
+                <strong>
+                  Location:
+                </strong>
+                <br />
+                Zagreb, Croatia
+              </p>
+
+            </div>
+
+            <a
+              href="https://maps.app.goo.gl/itNj4GVd9uFePYSu7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mapButton"
+            >
+              VIEW ON GOOGLE MAPS
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ================= JOIN ================= */}
+
+      <section
+        className="joinSection"
+        id="join"
+      >
+
+        <div className="sectionHead">
+
+          <div className="sectionKicker">
+            JOIN THE ASSASSINS
+          </div>
+
+          <h2 className="sectionTitle">
+            Be Part Of The Team
+          </h2>
+
+          <p className="sectionText">
+            Whether you are a player, cricket lover
+            or supporter, there is a place for you
+            in the Zagreb Assassins family.
+          </p>
+
+        </div>
+
+        <div className="joinGrid">
+
+          <div className="joinCard">
+
+            <div className="joinNumber">
+              01
+            </div>
+
+            <h3>
+              PLAYER
+            </h3>
+
+            <p>
+              Join the team, train with us and
+              represent Zagreb Assassins in matches
+              and tournaments.
+            </p>
+
+          </div>
+
+          <div className="joinCard">
+
+            <div className="joinNumber">
+              02
+            </div>
+
+            <h3>
+              COMMUNITY
+            </h3>
+
+            <p>
+              Become part of our cricket community
+              and help us grow the sport in Zagreb.
+            </p>
+
+          </div>
+
+          <div className="joinCard">
+
+            <div className="joinNumber">
+              03
+            </div>
+
+            <h3>
+              SUPPORTER
+            </h3>
+
+            <p>
+              Support Zagreb Assassins, follow our
+              journey and help us build a stronger
+              cricket community in Zagreb.
+            </p>
+
+          </div>
+
+        </div>
+
+        {/* ================= REGISTRATION FORM ================= */}
+
+        <div className="formWrap">
+
+          {submitted ? (
+
+            <div className="successMessage">
+
+              <div className="successIcon">
+                ✓
+              </div>
+
+              <h3>
+                THANK YOU!
+              </h3>
+
+              <p>
+                Your registration has been received.
+                Zagreb Assassins will contact you soon.
+              </p>
+
+            </div>
+
+          ) : (
+
+            <form
+              action="https://formspree.io/f/xppqzzdd"
+              method="POST"
+              onSubmit={() => setSubmitted(true)}
+              className="joinForm"
+            >
+
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Zagreb Assassins Registration"
+              />
+
+              <div className="formRow">
+
+                <div className="formGroup">
+
+                  <label htmlFor="name">
+                    NAME
+                  </label>
+
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                  />
+
+                </div>
+
+                <div className="formGroup">
+
+                  <label htmlFor="email">
+                    EMAIL
+                  </label>
+
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Your email"
+                    required
+                  />
+
+                </div>
+
+              </div>
+
+              <div className="formGroup">
+
+                <label htmlFor="phone">
+                  PHONE / WHATSAPP
+                </label>
+
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  placeholder="+385..."
+                />
+
+              </div>
+
+              <div className="formGroup">
+
+                <label htmlFor="message">
+                  MESSAGE
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  placeholder="Tell us about yourself..."
+                ></textarea>
+
+              </div>
+
+              <button
+                type="submit"
+                className="submitButton"
+              >
+                JOIN ZAGREB ASSASSINS
+              </button>
+
+            </form>
+
+          )}
+
+        </div>
+      </section>
+
+      {/* ================= SUPPORT ================= */}
+
+      <section
+        className="supportSection"
+        id="support"
+      >
+
+        <div className="sectionHead">
+
+          <div className="sectionKicker">
+            SUPPORT THE CLUB
+          </div>
+
+          <h2 className="sectionTitle">
+            Support Zagreb Assassins
+          </h2>
+
+          <p className="sectionText">
+            Your support helps us build a stronger
+            cricket community and create more
+            opportunities for players in Zagreb.
+          </p>
+
+        </div>
+
+        <div className="supportGrid">
+
+          {/* BANK */}
+
+          <div className="supportCard">
+
+            <h3>
+              Bank Support
+            </h3>
+
+            <p>
+
+              <strong>
+                IBAN:
+              </strong>
+
+              <br />
+
+              [IBAN]
+
+              <br />
+              <br />
+
+              <strong>
+                Account Holder:
+              </strong>
+
+              <br />
+
+              [ACCOUNT HOLDER]
+
+            </p>
+
+          </div>
+
+          {/* INSTAGRAM */}
+
+          <div className="supportCard">
+
+            <h3>
+              Instagram
+            </h3>
+
+            <p>
+              Follow Zagreb Assassins on Instagram.
+            </p>
+
+            <a
+              href="https://www.instagram.com/zagreb_assassins_cricket?stkn=MXg2em96andld2dobA=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagramLink"
+            >
+              @zagreb_assassins_cricket
+            </a>
+
+          </div>
+
+          {/* CONTACT */}
+
+          <div className="supportCard">
+
+            <h3>
+              Contact Us
+            </h3>
+
+            <p>
+
+              <strong>
+                Email:
+              </strong>
+
+              <br />
+
+              <a
+                href="mailto:zagrebassassins@gmail.com"
+                className="contactLink"
+              >
+                zagrebassassins@gmail.com
+              </a>
+
+              <br />
+              <br />
+
+              <strong>
+                Phone / WhatsApp:
+              </strong>
+
+              <br />
+
+              <a
+                href="tel:+385917271658"
+                className="contactLink"
+              >
+                +385 91 727 1658
+              </a>
+
+            </p>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ================= FOOTER ================= */}
+
+      <footer className="footer">
+
+        <div className="footerLogo">
+
+          <img
+            src="/images/logo.png.jpeg"
+            alt="Zagreb Assassins"
+          />
+
+        </div>
+
+        <h3>
+          ONE TEAM. ONE FIGHT. ONE FAMILY.
+        </h3>
+
+        <p>
+          Zagreb Assassins Cricket Club
+        </p>
+
+        <div className="footerContact">
+
+          <a href="mailto:zagrebassassins@gmail.com">
+            zagrebassassins@gmail.com
+          </a>
+
+          <span>
+            •
+          </span>
+
+          <a href="tel:+385917271658">
+            +385 91 727 1658
+          </a>
+
+        </div>
+
+        <div className="copyright">
+          © {new Date().getFullYear()} Zagreb Assassins.
+          All rights reserved.
+        </div>
+
+      </footer>
+
+      {/* ================= STYLES ================= */}
+
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap");
 
         :root {
           --bg: #0c0c0d;
@@ -32,18 +773,14 @@ export default function Home() {
 
         * {
           box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-
-        html {
           scroll-behavior: smooth;
         }
 
         body {
+          margin: 0;
           background: var(--bg);
           color: var(--text);
-          font-family: "Barlow", sans-serif;
+          font-family: Arial, Helvetica, sans-serif;
         }
 
         a {
@@ -51,81 +788,74 @@ export default function Home() {
           text-decoration: none;
         }
 
-        /* ================= NAV ================= */
+        /* NAV */
 
         .nav {
           position: fixed;
           top: 0;
           left: 0;
-          right: 0;
-          z-index: 100;
-          height: 76px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 6%;
-          transition: 0.3s;
+          width: 100%;
+          z-index: 1000;
+          padding: 18px 5%;
+          transition: 0.3s ease;
         }
 
         .nav.scrolled {
-          background: rgba(12, 12, 13, 0.96);
+          background: rgba(12, 12, 13, 0.95);
+          backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--line);
-          backdrop-filter: blur(10px);
         }
 
-        .navLogo {
+        .navInner {
+          max-width: 1400px;
+          margin: auto;
           display: flex;
           align-items: center;
-          gap: 12px;
-          font-family: "Barlow Condensed", sans-serif;
-          font-weight: 800;
-          font-size: 21px;
-          letter-spacing: 1px;
+          justify-content: space-between;
         }
 
-        .navLogo img {
-          width: 45px;
-          height: 45px;
+        .brand img {
+          width: 58px;
+          height: 58px;
           object-fit: contain;
         }
 
         .navLinks {
           display: flex;
-          gap: 30px;
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 16px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
+          gap: 34px;
+          align-items: center;
+        }
+
+        .navLinks a {
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          transition: 0.3s;
         }
 
         .navLinks a:hover {
           color: var(--acc);
         }
 
-        .menuBtn {
+        .menuButton {
           display: none;
           background: none;
-          border: 0;
+          border: none;
           color: white;
           font-size: 28px;
           cursor: pointer;
         }
 
-        .mobileMenu {
-          display: none;
-        }
-
-        /* ================= HERO ================= */
+        /* HERO */
 
         .hero {
-          min-height: 100vh;
           position: relative;
+          min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
           text-align: center;
-          padding: 120px 0 70px;
         }
 
         .heroVideo {
@@ -134,921 +864,572 @@ export default function Home() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          z-index: 0;
-          opacity: 0.35;
         }
 
         .heroOverlay {
           position: absolute;
           inset: 0;
+
           background:
             linear-gradient(
-              180deg,
-              rgba(0, 0, 0, 0.8),
-              rgba(0, 0, 0, 0.4) 45%,
-              rgba(12, 12, 13, 1) 100%
+              rgba(0, 0, 0, 0.55),
+              rgba(0, 0, 0, 0.82)
             );
-          z-index: 1;
         }
 
         .heroContent {
           position: relative;
           z-index: 2;
-          width: min(1100px, 92%);
-          margin: 0 auto;
+          padding: 120px 20px 60px;
         }
 
-        /* PERFECT CENTER LOGO */
-
-        .logo {
-          display: block;
-          width: 155px;
-          height: 155px;
-          object-fit: contain;
-          margin: 0 auto 22px;
-          filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
+        .heroLogo {
+          width: 190px;
+          max-width: 55vw;
+          margin-bottom: 25px;
         }
 
-        .eyebrow {
+        .heroKicker,
+        .sectionKicker {
           color: var(--acc);
-          font-family: "Barlow Condensed", sans-serif;
-          font-weight: 700;
+          font-size: 13px;
+          font-weight: 800;
           letter-spacing: 4px;
-          font-size: 15px;
-          margin-bottom: 13px;
+          margin-bottom: 15px;
         }
 
         .hero h1 {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: clamp(55px, 10vw, 120px);
-          line-height: 0.88;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: -2px;
+          font-size: clamp(48px, 9vw, 110px);
+          line-height: 0.9;
+          margin: 0;
+          font-weight: 900;
+          letter-spacing: -3px;
         }
 
-        .hero h1 span {
-          color: var(--acc);
-        }
-
-        .heroSubtitle {
-          max-width: 650px;
-          margin: 24px auto 30px;
-          color: #d0ccc6;
+        .hero p {
           font-size: 18px;
-          line-height: 1.6;
+          color: #ddd;
+          margin: 25px 0 35px;
         }
 
-        .enterBtn {
+        .enterBtn,
+        .submitButton,
+        .mapButton {
           display: inline-block;
-          padding: 15px 30px;
           background: var(--acc);
           color: white;
-          font-family: "Barlow Condensed", sans-serif;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          transition: 0.25s;
-          border: 1px solid var(--acc);
-        }
-
-        .enterBtn:hover {
-          background: transparent;
-        }
-
-        /* ================= TEAM PHOTO ================= */
-
-        .teamPhotoWrap {
-          width: min(950px, 96%);
-          margin: 50px auto 0;
-          position: relative;
-          overflow: hidden;
-          border: 1px solid var(--line);
-          background: var(--panel);
-          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
-        }
-
-        .teamPhoto {
-          display: block;
-          width: 100%;
-          height: auto;
-          max-height: 560px;
-          object-fit: cover;
-        }
-
-        .teamPhotoLabel {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: 60px 22px 18px;
-          background: linear-gradient(
-            180deg,
-            transparent,
-            rgba(0, 0, 0, 0.9)
-          );
-          font-family: "Barlow Condensed", sans-serif;
-          font-weight: 700;
-          letter-spacing: 2px;
-          font-size: 17px;
-          text-align: left;
-        }
-
-        /* ================= SECTIONS ================= */
-
-        section {
-          padding: 110px 6%;
-        }
-
-        .sectionHead {
-          max-width: 850px;
-          margin: 0 auto 55px;
-        }
-
-        .sectionKicker {
-          color: var(--acc);
-          font-family: "Barlow Condensed", sans-serif;
-          font-weight: 700;
-          letter-spacing: 3px;
-          text-transform: uppercase;
-          margin-bottom: 10px;
-        }
-
-        .sectionTitle {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: clamp(45px, 7vw, 82px);
-          text-transform: uppercase;
-          line-height: 0.9;
+          border: none;
+          padding: 15px 28px;
           font-weight: 800;
+          font-size: 12px;
+          letter-spacing: 1.5px;
+          cursor: pointer;
+          transition: 0.3s;
         }
 
-        .sectionText {
-          margin-top: 20px;
-          color: var(--mute);
-          font-size: 18px;
-          line-height: 1.7;
-          max-width: 760px;
+        .enterBtn:hover,
+        .submitButton:hover,
+        .mapButton:hover {
+          transform: translateY(-2px);
+          opacity: 0.9;
         }
 
-        /* ================= HISTORY ================= */
+        /* WHATSAPP */
 
-        .history {
+        .whatsappBtn {
+          display: inline-block;
+          margin-left: 12px;
+          margin-top: 10px;
+          background: #25D366;
+          color: white;
+          border: none;
+          padding: 15px 28px;
+          font-weight: 800;
+          font-size: 12px;
+          letter-spacing: 1.5px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .whatsappBtn:hover {
+          transform: translateY(-2px);
+          opacity: 0.9;
+        }
+
+        /* TEAM */
+
+        .teamSection {
+          padding: 0 5% 100px;
           background: var(--bg);
         }
 
-        .timeline {
-          max-width: 1000px;
+        .teamImageWrap {
+          max-width: 1400px;
           margin: auto;
-          border-left: 1px solid var(--line);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .teamImage {
+          width: 100%;
+          display: block;
+          max-height: 720px;
+          object-fit: cover;
+        }
+
+        .teamCaption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 35px;
+
+          background:
+            linear-gradient(
+              transparent,
+              rgba(0, 0, 0, 0.9)
+            );
+
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+
+        .teamCaption span {
+          font-size: 13px;
+          letter-spacing: 3px;
+          color: #ccc;
+        }
+
+        .teamCaption strong {
+          font-size: 20px;
+        }
+
+        /* SECTIONS */
+
+        .history,
+        .groundSection,
+        .joinSection,
+        .supportSection {
+          max-width: 1400px;
+          margin: auto;
+          padding: 110px 5%;
+        }
+
+        .sectionHead {
+          max-width: 760px;
+          margin-bottom: 65px;
+        }
+
+        .sectionTitle {
+          font-size: clamp(40px, 6vw, 76px);
+          line-height: 0.95;
+          margin: 0 0 25px;
+          font-weight: 900;
+          letter-spacing: -2px;
+        }
+
+        .sectionText {
+          color: var(--mute);
+          font-size: 17px;
+          line-height: 1.7;
+        }
+
+        /* HISTORY */
+
+        .timeline {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1px;
+          background: var(--line);
+          border: 1px solid var(--line);
         }
 
         .timelineItem {
-          padding: 0 0 50px 40px;
-          position: relative;
-        }
-
-        .timelineItem::before {
-          content: "";
-          position: absolute;
-          left: -6px;
-          top: 4px;
-          width: 11px;
-          height: 11px;
-          border-radius: 50%;
-          background: var(--acc);
+          background: var(--bg);
+          padding: 35px;
+          min-height: 260px;
         }
 
         .year {
           color: var(--acc);
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 24px;
-          font-weight: 800;
-          margin-bottom: 8px;
+          font-size: 14px;
+          font-weight: 900;
+          letter-spacing: 3px;
+          margin-bottom: 30px;
         }
 
         .timelineItem h3 {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 34px;
-          text-transform: uppercase;
-          margin-bottom: 10px;
+          font-size: 26px;
+          margin: 0 0 15px;
         }
 
         .timelineItem p {
           color: var(--mute);
           line-height: 1.7;
-          font-size: 17px;
+          margin: 0;
         }
 
-        /* ================= GROUND ================= */
+        /* GROUND */
 
-        .ground {
-          background: #101011;
+        .groundSection {
+          background: var(--panel);
+          max-width: none;
+          padding-left: 5%;
+          padding-right: 5%;
         }
 
         .groundGrid {
+          max-width: 1400px;
+          margin: auto;
+
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-          max-width: 1200px;
-          margin: auto;
-        }
+          grid-template-columns: 1.1fr 0.9fr;
 
-        .infoCard {
-          background: var(--panel);
-          border: 1px solid var(--line);
-          padding: 35px;
-        }
-
-        .infoCard h3 {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 35px;
-          text-transform: uppercase;
-          margin-bottom: 18px;
-        }
-
-        .infoCard p {
-          color: var(--mute);
-          line-height: 1.7;
-        }
-
-        .placeholder {
-          min-height: 260px;
-          display: flex;
+          gap: 70px;
           align-items: center;
-          justify-content: center;
-          border: 1px dashed #444;
-          color: #777;
-          font-family: "Barlow Condensed", sans-serif;
-          letter-spacing: 2px;
-          text-align: center;
         }
 
-        /* ================= JOIN ================= */
-
-        .join {
-          background: var(--bg);
+        .groundImageWrap {
+          overflow: hidden;
+          min-height: 450px;
+          background: #111;
         }
 
-        .joinGrid {
-          max-width: 1200px;
-          margin: auto;
+        .groundImage {
+          width: 100%;
+          height: 100%;
+          min-height: 450px;
+          display: block;
+          object-fit: cover;
+        }
+
+        .groundContent {
+          max-width: 600px;
+        }
+
+        .groundDetails {
+          border-top: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+          padding: 20px 0;
+          margin: 30px 0;
+        }
+
+        .groundDetails p {
+          color: var(--mute);
+          line-height: 1.6;
+        }
+
+        .groundDetails strong {
+          color: var(--text);
+        }
+
+        /* JOIN */
+
+        .joinGrid,
+        .supportGrid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
 
-        .joinCard {
+        .joinCard,
+        .supportCard {
           background: var(--panel);
           border: 1px solid var(--line);
           padding: 35px;
-          min-height: 250px;
         }
 
-        .joinCard .number {
+        .joinNumber {
           color: var(--acc);
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 20px;
-          font-weight: 800;
+          font-size: 13px;
+          font-weight: 900;
+          margin-bottom: 45px;
         }
 
-        .joinCard h3 {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 36px;
-          text-transform: uppercase;
-          margin: 15px 0;
+        .joinCard h3,
+        .supportCard h3 {
+          font-size: 22px;
+          margin: 0 0 18px;
         }
 
-        .joinCard p {
+        .joinCard p,
+        .supportCard p {
           color: var(--mute);
           line-height: 1.7;
         }
 
-        .memberForm {
-          max-width: 800px;
-          margin: 50px auto 0;
-          display: grid;
-          gap: 14px;
-        }
+        /* FORM */
 
-        .memberForm input,
-        .memberForm textarea {
-          width: 100%;
+        .formWrap {
+          margin-top: 60px;
           background: var(--panel);
           border: 1px solid var(--line);
+          padding: 45px;
+        }
+
+        .joinForm {
+          max-width: 850px;
+          margin: auto;
+        }
+
+        .formRow {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+
+        .formGroup {
+          margin-bottom: 22px;
+        }
+
+        .formGroup label {
+          display: block;
+          color: #ddd;
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 2px;
+          margin-bottom: 9px;
+        }
+
+        .formGroup input,
+        .formGroup textarea {
+          width: 100%;
+          border: 1px solid var(--line);
+          background: #0e0e10;
           color: white;
-          padding: 16px;
-          font-family: "Barlow", sans-serif;
+          padding: 15px;
           outline: none;
-        }
-
-        .memberForm input:focus,
-        .memberForm textarea:focus {
-          border-color: var(--acc);
-        }
-
-        .memberForm textarea {
-          min-height: 130px;
+          font: inherit;
           resize: vertical;
         }
 
-        .memberForm button {
-          padding: 16px;
-          background: var(--acc);
-          border: 1px solid var(--acc);
-          color: white;
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 18px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          cursor: pointer;
+        .formGroup input:focus,
+        .formGroup textarea:focus {
+          border-color: var(--acc);
         }
 
-        .memberForm button:hover {
-          background: transparent;
+        .submitButton {
+          margin-top: 10px;
         }
 
-        /* ================= SUPPORT ================= */
+        /* SUCCESS */
 
-        .support {
-          background: #101011;
-        }
-
-        .supportGrid {
-          max-width: 1100px;
+        .successMessage {
+          text-align: center;
+          max-width: 600px;
           margin: auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 25px;
-        }
-
-        .supportCard {
-          background: var(--panel);
-          border: 1px solid var(--line);
           padding: 30px;
         }
 
-        .supportCard h3 {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: 32px;
-          text-transform: uppercase;
-          margin-bottom: 15px;
-        }
+        .successIcon {
+          width: 65px;
+          height: 65px;
+          border-radius: 50%;
+          background: var(--acc);
 
-        .supportCard p {
-          color: var(--mute);
-          line-height: 1.8;
-        }
-
-        /* ================= CLOSING ================= */
-
-        .closing {
-          min-height: 65vh;
           display: flex;
           align-items: center;
           justify-content: center;
-          text-align: center;
-          padding: 100px 6%;
-        }
 
-        .closingInner {
-          max-width: 900px;
-          margin: 0 auto;
-        }
-
-        .closingLogo {
-          display: block;
-          width: 100px;
-          height: 100px;
-          object-fit: contain;
           margin: 0 auto 25px;
+
+          font-size: 28px;
+          font-weight: 900;
         }
 
-        .closingQuote {
-          font-family: "Barlow Condensed", sans-serif;
-          font-size: clamp(38px, 6vw, 75px);
-          line-height: 0.95;
-          text-transform: uppercase;
-          font-weight: 800;
+        .successMessage h3 {
+          font-size: 30px;
+          margin-bottom: 10px;
         }
 
-        .closingQuote span {
+        .successMessage p {
+          color: var(--mute);
+          line-height: 1.7;
+        }
+
+        /* SUPPORT */
+
+        .supportGrid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .supportCard {
+          min-height: 230px;
+        }
+
+        .supportCard strong {
+          color: var(--text);
+        }
+
+        .instagramLink,
+        .contactLink {
+          color: var(--acc);
+          font-weight: 700;
+          word-break: break-word;
+        }
+
+        /* FOOTER */
+
+        .footer {
+          border-top: 1px solid var(--line);
+          text-align: center;
+          padding: 80px 20px 40px;
+        }
+
+        .footerLogo img {
+          width: 100px;
+          margin-bottom: 25px;
+        }
+
+        .footer h3 {
+          font-size: 20px;
+          letter-spacing: 2px;
+          margin: 0 0 15px;
+        }
+
+        .footer p {
+          color: var(--mute);
+        }
+
+        .footerContact {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          flex-wrap: wrap;
+          margin-top: 25px;
+        }
+
+        .footerContact a {
+          color: var(--mute);
+        }
+
+        .footerContact a:hover {
           color: var(--acc);
         }
 
-        /* ================= FOOTER ================= */
-
-        footer {
-          border-top: 1px solid var(--line);
-          padding: 30px 6%;
-          display: flex;
-          justify-content: space-between;
-          gap: 20px;
-          color: var(--mute);
-          font-size: 14px;
+        .copyright {
+          color: #666;
+          font-size: 12px;
+          margin-top: 40px;
         }
 
-        /* ================= MOBILE ================= */
+        /* TABLET */
 
-        @media (max-width: 800px) {
-          .navLinks {
-            display: none;
-          }
+        @media (max-width: 900px) {
 
-          .menuBtn {
+          .menuButton {
             display: block;
           }
 
-          .mobileMenu {
-            position: fixed;
-            top: 76px;
-            left: 0;
-            right: 0;
-            z-index: 99;
-            background: rgba(12, 12, 13, 0.98);
-            border-bottom: 1px solid var(--line);
-            display: flex;
+          .navLinks {
+            position: absolute;
+            top: 90px;
+            left: 5%;
+            right: 5%;
+
+            display: none;
             flex-direction: column;
-            padding: 20px 6%;
+            align-items: stretch;
+
+            gap: 0;
+
+            background: rgba(15, 15, 16, 0.98);
+
+            border: 1px solid var(--line);
           }
 
-          .mobileMenu a {
-            padding: 14px 0;
+          .navLinks.open {
+            display: flex;
+          }
+
+          .navLinks a {
+            padding: 18px 20px;
             border-bottom: 1px solid var(--line);
-            font-family: "Barlow Condensed", sans-serif;
-            text-transform: uppercase;
           }
 
-          .hero {
-            padding-top: 105px;
-          }
-
-          .logo {
-            width: 130px;
-            height: 130px;
-            margin-left: auto;
-            margin-right: auto;
-          }
-
-          .hero h1 {
-            font-size: 65px;
-          }
-
-          .teamPhotoWrap {
-            margin-top: 40px;
-          }
-
-          .teamPhoto {
-            max-height: 400px;
-          }
-
+          .timeline,
           .groundGrid,
           .joinGrid,
           .supportGrid {
             grid-template-columns: 1fr;
           }
 
-          section {
-            padding: 80px 6%;
+          .groundGrid {
+            gap: 40px;
           }
 
-          footer {
-            flex-direction: column;
+          .groundImageWrap,
+          .groundImage {
+            min-height: 300px;
+          }
+
+          .formRow {
+            grid-template-columns: 1fr;
+            gap: 0;
           }
         }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+          .nav {
+            padding: 12px 5%;
+          }
+
+          .brand img {
+            width: 48px;
+            height: 48px;
+          }
+
+          .hero h1 {
+            letter-spacing: -1px;
+          }
+
+          .heroLogo {
+            width: 145px;
+          }
+
+          .teamCaption {
+            padding: 20px;
+            display: block;
+          }
+
+          .teamCaption strong {
+            display: block;
+            margin-top: 8px;
+          }
+
+          .history,
+          .groundSection,
+          .joinSection,
+          .supportSection {
+            padding-top: 80px;
+            padding-bottom: 80px;
+          }
+
+          .formWrap {
+            padding: 25px 20px;
+          }
+
+          .timelineItem,
+          .joinCard,
+          .supportCard {
+            padding: 25px;
+          }
+
+          .whatsappBtn {
+            margin-left: 0;
+            display: block;
+            width: fit-content;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+        }
+
       `}</style>
-
-      {/* NAV */}
-
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <a href="#home" className="navLogo">
-          <img
-            src="/images/logo.png.jpeg"
-            alt="Zagreb Assassins logo"
-          />
-          <span>ZAGREB ASSASSINS</span>
-        </a>
-
-        <div className="navLinks">
-          <a href="#home">Home</a>
-          <a href="#history">History</a>
-          <a href="#ground">Ground</a>
-          <a href="#join">Join Us</a>
-          <a href="#support">Support</a>
-        </div>
-
-        <button
-          className="menuBtn"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Open menu"
-        >
-          ☰
-        </button>
-      </nav>
-
-      {/* MOBILE MENU */}
-
-      {menuOpen && (
-        <div className="mobileMenu">
-          <a href="#home" onClick={() => setMenuOpen(false)}>
-            Home
-          </a>
-
-          <a href="#history" onClick={() => setMenuOpen(false)}>
-            History
-          </a>
-
-          <a href="#ground" onClick={() => setMenuOpen(false)}>
-            Ground
-          </a>
-
-          <a href="#join" onClick={() => setMenuOpen(false)}>
-            Join Us
-          </a>
-
-          <a href="#support" onClick={() => setMenuOpen(false)}>
-            Support
-          </a>
-        </div>
-      )}
-
-      <main>
-        {/* HERO */}
-
-        <section className="hero" id="home">
-          <video
-            className="heroVideo"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source
-              src="/videos/hero.mp4"
-              type="video/mp4"
-            />
-          </video>
-
-          <div className="heroOverlay" />
-
-          <div className="heroContent">
-            <img
-              className="logo"
-              src="/images/logo.png.jpeg"
-              alt="Zagreb Assassins logo"
-            />
-
-            <div className="eyebrow">
-              ZAGREB • CROATIA
-            </div>
-
-            <h1>
-              ZAGREB
-              <br />
-              <span>ASSASSINS</span>
-            </h1>
-
-            <p className="heroSubtitle">
-              More than a cricket team. A community built on
-              passion, friendship, competition and the love of
-              the game.
-            </p>
-
-            <a href="#join" className="enterBtn">
-              ENTER THE ASSASSINS
-            </a>
-
-            {/* TEAM PHOTO */}
-
-            <div className="teamPhotoWrap">
-              <img
-                className="teamPhoto"
-                src="/images/team.jpg.jpeg"
-                alt="Zagreb Assassins cricket team"
-              />
-
-              <div className="teamPhotoLabel">
-                ZAGREB ASSASSINS • CRICKET CLUB
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* HISTORY */}
-
-        <section className="history" id="history">
-          <div className="sectionHead">
-            <div className="sectionKicker">
-              Our Story
-            </div>
-
-            <h2 className="sectionTitle">
-              Built To Compete
-            </h2>
-
-            <p className="sectionText">
-              Zagreb Assassins is a cricket community growing
-              together in Zagreb. From the first matches to the
-              future, every player, supporter and friend is part
-              of the story.
-            </p>
-          </div>
-
-          <div className="timeline">
-            <div className="timelineItem">
-              <div className="year">2024</div>
-
-              <h3>The Beginning</h3>
-
-              <p>
-                The foundation of Zagreb Assassins and the
-                beginning of a new cricket journey in Zagreb.
-              </p>
-            </div>
-
-            <div className="timelineItem">
-              <div className="year">2025</div>
-
-              <h3>Growing Stronger</h3>
-
-              <p>
-                More players, more matches and a stronger
-                community around the club.
-              </p>
-            </div>
-
-            <div className="timelineItem">
-              <div className="year">2026</div>
-
-              <h3>The Next Chapter</h3>
-
-              <p>
-                A new season with bigger ambitions, stronger
-                teamwork and more cricket.
-              </p>
-            </div>
-
-            <div className="timelineItem">
-              <div className="year">FUTURE</div>
-
-              <h3>Our Ambition</h3>
-
-              <p>
-                Build one of Zagreb's strongest cricket
-                communities and create opportunities for
-                everyone who loves the game.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* GROUND */}
-
-        <section className="ground" id="ground">
-          <div className="sectionHead">
-            <div className="sectionKicker">
-              Home Ground
-            </div>
-
-            <h2 className="sectionTitle">
-              Where We Play
-            </h2>
-
-            <p className="sectionText">
-              Our home ground is where training, matches,
-              friendships and unforgettable cricket moments
-              come together.
-            </p>
-          </div>
-
-          <div className="groundGrid">
-            <div className="infoCard">
-              <h3>Ground Details</h3>
-
-              <p>
-                <strong>Ground:</strong>
-                <br />
-                [CONFIRM GROUND NAME]
-                <br />
-                <br />
-
-                <strong>Location:</strong>
-                <br />
-                Zagreb, Croatia
-                <br />
-                <br />
-
-                <strong>Map:</strong>
-                <br />
-                [MAP URL]
-              </p>
-            </div>
-
-            <div className="infoCard">
-              <div className="placeholder">
-                [ GROUND PHOTO ]
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* JOIN */}
-
-        <section className="join" id="join">
-          <div className="sectionHead">
-            <div className="sectionKicker">
-              Be Part Of It
-            </div>
-
-            <h2 className="sectionTitle">
-              Join The Assassins
-            </h2>
-
-            <p className="sectionText">
-              Whether you are an experienced cricketer, a
-              beginner or simply someone who loves the game,
-              there is a place for you.
-            </p>
-          </div>
-
-          <div className="joinGrid">
-            <div className="joinCard">
-              <div className="number">01</div>
-
-              <h3>Player</h3>
-
-              <p>
-                Join the team, train with us and represent
-                Zagreb Assassins in matches and tournaments.
-              </p>
-            </div>
-
-            <div className="joinCard">
-              <div className="number">02</div>
-
-              <h3>Community</h3>
-
-              <p>
-                Become part of our cricket community and help
-                us grow the sport in Zagreb.
-              </p>
-            </div>
-
-            <div className="joinCard">
-              <div className="number">03</div>
-
-              <h3>Supporter</h3>
-
-              <p>
-                Support the team, attend matches and be part
-                of the atmosphere on and off the field.
-              </p>
-            </div>
-          </div>
-
-          {/* REGISTRATION FORM */}
-
-          <form
-            className="memberForm"
-            action="https://formspree.io/f/xppqzzdd"
-            method="POST"
-          >
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Zagreb Assassins Registration"
-            />
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-            />
-
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone / WhatsApp"
-            />
-
-            <textarea
-              name="message"
-              placeholder="Tell us about yourself..."
-              required
-            />
-
-            <button type="submit">
-              Send Request
-            </button>
-          </form>
-        </section>
-
-        {/* SUPPORT */}
-
-        <section className="support" id="support">
-          <div className="sectionHead">
-            <div className="sectionKicker">
-              Support The Club
-            </div>
-
-            <h2 className="sectionTitle">
-              Help Us Grow
-            </h2>
-
-            <p className="sectionText">
-              Every contribution helps us with equipment,
-              ground expenses, tournaments and building a
-              stronger cricket community.
-            </p>
-          </div>
-
-          <div className="supportGrid">
-            <div className="supportCard">
-              <h3>Bank Support</h3>
-
-              <p>
-                <strong>IBAN:</strong>
-                <br />
-                [IBAN]
-                <br />
-                <br />
-
-                <strong>Account Holder:</strong>
-                <br />
-                [ACCOUNT HOLDER]
-              </p>
-            </div>
-
-            <div className="supportCard">
-              <h3>Online Support</h3>
-
-              <p>
-                <strong>PayPal:</strong>
-                <br />
-                [PAYPAL LINK]
-                <br />
-                <br />
-
-                <strong>Payment:</strong>
-                <br />
-                [PAYMENT METHOD]
-              </p>
-            </div>
-
-            <div className="supportCard">
-              <h3>Instagram</h3>
-
-              <p>[INSTAGRAM URL]</p>
-            </div>
-
-            <div className="supportCard">
-              <h3>Facebook</h3>
-
-              <p>[FACEBOOK URL]</p>
-            </div>
-          </div>
-        </section>
-
-        {/* CLOSING */}
-
-        <section className="closing">
-          <div className="closingInner">
-            <img
-              className="closingLogo"
-              src="/images/logo.png.jpeg"
-              alt="Zagreb Assassins"
-            />
-
-            <div className="closingQuote">
-              ONE TEAM.
-              <br />
-              ONE <span>FIGHT.</span>
-              <br />
-              ONE FAMILY.
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* FOOTER */}
-
-      <footer>
-        <div>
-          © 2026 Zagreb Assassins Cricket Club
-        </div>
-
-        <div>
-          [EMAIL] • [PHONE]
-        </div>
-      </footer>
-    </>
+    </main>
   );
 }
