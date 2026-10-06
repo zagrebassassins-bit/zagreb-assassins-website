@@ -434,6 +434,7 @@ export default function Home() {
         </div>
 
         <div className="supportGrid">
+          {/* BANK SUPPORT */}
           <div className="supportCard">
             <div className="cardTop">
               <div className="cardNumber">01</div>
@@ -458,9 +459,43 @@ export default function Home() {
             </p>
           </div>
 
+          {/* INSTAGRAM */}
           <div className="supportCard socialCard">
             <div className="cardTop">
-              <div className="socialSymbol">◎</div>
+              <div className="socialSymbol instagramCardIcon">
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  />
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="4.2"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  />
+
+                  <circle
+                    cx="17.4"
+                    cy="6.6"
+                    r="1"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+
               <div className="cardNumber">02</div>
             </div>
 
@@ -486,10 +521,30 @@ export default function Home() {
             </a>
           </div>
 
+          {/* WHATSAPP */}
           <div className="supportCard socialCard">
             <div className="cardTop">
-              <div className="socialSymbol whatsappIcon">
-                WA
+              <div className="socialSymbol whatsappCardIcon">
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20.5 3.5A11.7 11.7 0 0 0 12.2 0C5.7 0 .4 5.2.4 11.7c0 2.1.6 4.1 1.7 5.9L.3 24l6.6-1.7a11.7 11.7 0 0 0 5.3 1.3h.1c6.5 0 11.7-5.2 11.7-11.7 0-3.1-1.2-6-3.5-8.2z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+
+                  <path
+                    d="M8.8 7.1c.2-.4.4-.4.7-.4h.6c.2 0 .4.1.5.4l.8 2c.1.3.1.5-.1.7l-.7.8c-.2.2-.1.4 0 .6.4.8 1 1.5 1.7 2 .8.6 1.4.9 2.1 1.1.2.1.4 0 .6-.2l.8-.9c.2-.2.4-.2.7-.1l2 .9c.3.1.4.3.4.6v.7c0 .3-.1.6-.4.8-.4.4-1.3.9-2.4.9-1.4 0-2.7-.6-3.8-1.6-1-.9-1.8-2-2.2-3-.4-.9-.6-1.8-.5-2.5.1-.8.5-1.5 1.1-2z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
 
               <div className="cardNumber">03</div>
@@ -517,6 +572,7 @@ export default function Home() {
             </a>
           </div>
 
+          {/* CONTACT */}
           <div className="supportCard">
             <div className="cardTop">
               <div className="cardNumber">04</div>
@@ -537,7 +593,7 @@ export default function Home() {
                 href="mailto:zagrebassassins@gmail.com"
                 className="contactLink"
               >
-                zagrebassassins@gmail.com
+                zagrebassins@gmail.com
               </a>
 
               <br />
@@ -556,8 +612,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ================= FOOTER ================= */}
+       {/* ================= FOOTER ================= */}
       <footer className="footer">
         <div className="footerLogo">
           <img
@@ -1471,12 +1526,13 @@ export default function Home() {
           line-height: 1.7;
         }
 
-        /* SUPPORT */
+        /* ================= SUPPORT ================= */
 
         .supportGrid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 14px;
+          align-items: stretch;
         }
 
         .supportCard {
@@ -1484,12 +1540,18 @@ export default function Home() {
           min-height: 345px;
           padding: 32px;
           overflow: hidden;
+
+          display: flex;
+          flex-direction: column;
+
           background: linear-gradient(
             145deg,
             #171719 0%,
             #101012 100%
           );
+
           border: 1px solid #28282b;
+
           transition:
             transform 0.35s ease,
             border-color 0.35s ease,
@@ -1512,6 +1574,7 @@ export default function Home() {
         }
 
         .cardTop {
+          min-height: 40px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
@@ -1534,6 +1597,7 @@ export default function Home() {
         }
 
         .cardLabel {
+          min-height: 13px;
           margin-bottom: 11px;
           color: var(--acc);
           font-size: 9px;
@@ -1542,6 +1606,7 @@ export default function Home() {
         }
 
         .supportCard h3 {
+          min-height: 29px;
           margin: 0;
           color: var(--text);
           font-size: 25px;
@@ -1553,11 +1618,13 @@ export default function Home() {
         .cardLine {
           width: 100%;
           height: 1px;
+          flex-shrink: 0;
           margin: 23px 0;
           background: var(--line);
         }
 
         .supportCard p {
+          flex: 1;
           margin: 0;
           color: var(--mute);
           font-size: 13px;
@@ -1571,6 +1638,8 @@ export default function Home() {
           letter-spacing: 1px;
         }
 
+        /* INSTAGRAM + WHATSAPP ICONS */
+
         .socialSymbol {
           width: 40px;
           height: 40px;
@@ -1579,32 +1648,53 @@ export default function Home() {
           justify-content: center;
           color: #ece8e2;
           border: 1px solid #36363a;
-          font-size: 20px;
-          font-weight: 400;
+
+          transition:
+            color 0.25s ease,
+            border-color 0.25s ease,
+            background 0.25s ease;
         }
 
-        .whatsappIcon {
-          font-size: 9px;
-          font-weight: 800;
-          letter-spacing: 1px;
+        .socialSymbol svg {
+          width: 21px;
+          height: 21px;
+          display: block;
         }
+
+        .instagramCardIcon:hover {
+          color: #fff;
+          border-color: var(--acc);
+          background: rgba(229, 34, 43, 0.12);
+        }
+
+        .whatsappCardIcon:hover {
+          color: #fff;
+          border-color: #25d366;
+          background: rgba(37, 211, 102, 0.12);
+        }
+
+        /* SOCIAL BUTTONS */
 
         .socialButton {
-          position: absolute;
-          left: 32px;
-          right: 32px;
-          bottom: 29px;
+          width: 100%;
           min-height: 43px;
+          flex-shrink: 0;
+
+          margin-top: 25px;
           padding: 12px 14px;
+
           display: flex;
           align-items: center;
           justify-content: space-between;
+
           border: 1px solid #333337;
           background: #151517;
           color: #eeeae4;
+
           font-size: 9px;
           font-weight: 800;
           letter-spacing: 1.5px;
+
           transition:
             background 0.3s ease,
             border-color 0.3s ease,
@@ -1997,9 +2087,7 @@ export default function Home() {
           }
 
           .socialButton {
-            left: 28px;
-            right: 28px;
-            bottom: 26px;
+            margin-top: 25px;
           }
 
           .footer {
