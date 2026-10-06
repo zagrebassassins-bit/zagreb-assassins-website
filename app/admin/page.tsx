@@ -1,15 +1,1 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import AdminUpload from "./AdminUpload";
-
-export default async function AdminPage() {
-  const cookieStore = await cookies();
-  const adminSession = cookieStore.get("admin_session");
-
-  if (adminSession?.value !== "authenticated") {
-    redirect("/admin/login");
-  }
-
-  return <AdminUpload />;
-}
-
+import { cookies } from "next/headers"; import { redirect } from "next/navigation"; import AdminUpload from "./AdminUpload"; export default async function AdminPage() { const cookieStore = await cookies(); const adminSession = cookieStore.get("admin_session"); if (adminSession?.value !== "authenticated") { redirect("/admin/login"); } async function logout() { "use server"; const cookieStore = await cookies(); cookieStore.delete("admin_session"); redirect("/admin/login"); } return ( <> <div style={{ position: "fixed", top: 20, right: 20, zIndex: 1000, }} > <form action={logout}> <button type="submit" style={{ background: "#e5222b", color: "#ffffff", border: "none", padding: "10px 18px", borderRadius: 6, fontSize: 13, fontWeight: 700, cursor: "pointer", }} > LOGOUT </button> </form> </div> <AdminUpload /> </> ); }
