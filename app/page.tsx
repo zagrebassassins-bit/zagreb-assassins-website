@@ -353,7 +353,6 @@ export default function Home() {
           )}
         </div>
       </section>
-
       {/* ================= SUPPORT ================= */}
       <section className="supportSection" id="support">
         <div className="sectionHead">
@@ -368,7 +367,6 @@ export default function Home() {
         </div>
 
         <div className="supportGrid">
-          {/* BANK */}
           <div className="supportCard">
             <div className="cardTop">
               <div className="cardNumber">01</div>
@@ -393,11 +391,9 @@ export default function Home() {
             </p>
           </div>
 
-          {/* INSTAGRAM */}
           <div className="supportCard socialCard">
             <div className="cardTop">
               <div className="socialSymbol">◎</div>
-
               <div className="cardNumber">02</div>
             </div>
 
@@ -423,11 +419,9 @@ export default function Home() {
             </a>
           </div>
 
-          {/* WHATSAPP */}
           <div className="supportCard socialCard">
             <div className="cardTop">
               <div className="socialSymbol whatsappIcon">WA</div>
-
               <div className="cardNumber">03</div>
             </div>
 
@@ -453,11 +447,9 @@ export default function Home() {
             </a>
           </div>
 
-          {/* CONTACT */}
           <div className="supportCard">
             <div className="cardTop">
               <div className="cardNumber">04</div>
-
               <div className="cardMark">/</div>
             </div>
 
@@ -495,14 +487,15 @@ export default function Home() {
       {/* ================= FOOTER ================= */}
       <footer className="footer">
         <div className="footerLogo">
-          <img src="/images/logo.png.jpeg" alt="Zagreb Assassins" />
+          <img
+            src="/images/logo.png.jpeg"
+            alt="Zagreb Assassins"
+          />
         </div>
 
-        <div className="footerSlogan">
-          ONE TEAM. ONE FIGHT. ONE FAMILY.
-        </div>
-
-        <p>Zagreb Assassins Cricket Club</p>
+        <p className="footerClubName">
+          Zagreb Assassins Cricket Club
+        </p>
 
         <div className="footerContact">
           <a href="mailto:zagrebassassins@gmail.com">
@@ -511,11 +504,82 @@ export default function Home() {
 
           <span>•</span>
 
-          <a href="tel:+385917271658">+385 91 727 1658</a>
+          <a href="tel:+385917271658">
+            +385 91 727 1658
+          </a>
+        </div>
+
+        <div className="footerSocials">
+          <a
+            href="https://www.instagram.com/zagreb_assassins_cricket?stkn=MXg2em96andld2dobA=="
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="footerSocialButton instagramButton"
+          >
+            <svg viewBox="0 0 24 24">
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              />
+
+              <circle
+                cx="12"
+                cy="12"
+                r="4.2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              />
+
+              <circle
+                cx="17.4"
+                cy="6.6"
+                r="1"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="https://chat.whatsapp.com/ItcFiILa3B3LkTSkdpyTxY?s=sw&p=a&ilr=4&iam=2"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            className="footerSocialButton whatsappButton"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20.5 3.5A11.7 11.7 0 0 0 12.2 0C5.7 0 .4 5.2.4 11.7c0 2.1.6 4.1 1.7 5.9L.3 24l6.6-1.7a11.7 11.7 0 0 0 5.3 1.3h.1c6.5 0 11.7-5.2 11.7-11.7 0-3.1-1.2-6-3.5-8.2z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+
+              <path
+                d="M8.8 7.1c.2-.4.4-.4.7-.4h.6c.2 0 .4.1.5.4l.8 2c.1.3.1.5-.1.7l-.7.8c-.2.2-.1.4 0 .6.4.8 1 1.5 1.7 2 .8.6 1.4.9 2.1 1.1.2.1.4 0 .6-.2l.8-.9c.2-.2.4-.2.7-.1l2 .9c.3.1.4.3.4.6v.7c0 .3-.1.6-.4.8-.4.4-1.3.9-2.4.9-1.4 0-2.7-.6-3.8-1.6-1-.9-1.8-2-2.2-3-.4-.9-.6-1.8-.5-2.5.1-.8.5-1.5 1.1-2z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
         </div>
 
         <div className="copyright">
           © {new Date().getFullYear()} Zagreb Assassins. All rights reserved.
+        </div>
+
+        <div className="footerSlogan">
+          ONE TEAM. ONE FIGHT. ONE FAMILY.
         </div>
       </footer>
 
@@ -1310,16 +1374,7 @@ export default function Home() {
           object-fit: contain;
         }
 
-        .footerSlogan {
-          margin-bottom: 14px;
-          color: #e9e4dd;
-          font-size: 18px;
-          line-height: 1.4;
-          font-weight: 700;
-          letter-spacing: 2.4px;
-        }
-
-        .footer p {
+        .footerClubName {
           margin: 0;
           color: #77747a;
           font-size: 13px;
@@ -1348,11 +1403,63 @@ export default function Home() {
           color: #4c4a4e;
         }
 
+        .footerSocials {
+          margin-top: 28px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .footerSocialButton {
+          width: 48px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #333337;
+          background: #151517;
+          color: #eeeae4;
+          transition: all 0.25s ease;
+        }
+
+        .footerSocialButton svg {
+          width: 23px;
+          height: 23px;
+        }
+
+        .footerSocialButton:hover {
+          transform: translateY(-3px);
+        }
+
+        .instagramButton:hover {
+          color: #fff;
+          border-color: var(--acc);
+          background: rgba(229, 34, 43, 0.12);
+        }
+
+        .whatsappButton:hover {
+          color: #fff;
+          border-color: #25d366;
+          background: rgba(37, 211, 102, 0.12);
+        }
+
         .copyright {
           margin-top: 38px;
           color: #4d4b50;
           font-size: 11px;
           letter-spacing: 0.3px;
+        }
+
+        .footerSlogan {
+          margin-top: 48px;
+          margin-bottom: 0;
+          color: #f3efe9;
+          font-size: clamp(24px, 4vw, 48px);
+          line-height: 1.05;
+          font-weight: 900;
+          letter-spacing: 3px;
+          text-transform: uppercase;
         }
 
         /* TABLET */
@@ -1595,11 +1702,6 @@ export default function Home() {
             margin-bottom: 24px;
           }
 
-          .footerSlogan {
-            font-size: 15px;
-            letter-spacing: 1.7px;
-          }
-
           .footerContact {
             flex-direction: column;
             gap: 8px;
@@ -1611,6 +1713,23 @@ export default function Home() {
 
           .copyright {
             margin-top: 30px;
+          }
+
+          .footerSocialButton {
+            width: 46px;
+            height: 46px;
+          }
+
+          .footerSocialButton svg {
+            width: 21px;
+            height: 21px;
+          }
+
+          .footerSlogan {
+            margin-top: 40px;
+            font-size: clamp(20px, 6vw, 30px);
+            letter-spacing: 1.8px;
+            line-height: 1.15;
           }
         }
       `}</style>
