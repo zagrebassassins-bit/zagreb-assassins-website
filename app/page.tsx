@@ -3,6 +3,45 @@
 
 import { useState } from "react";
 
+const instagram =
+  "https://www.instagram.com/zagreb_assassins_cricket?stkn=MXg2em96andld2dobA==";
+
+const whatsapp =
+  "https://chat.whatsapp.com/ItcFiILa3B3LkTSkdpyTxY?s=sw&p=a&ilr=4&iam=2";
+
+const milestones = [
+  {
+    year: "2023",
+    title: "ECS CHAMPIONS",
+    description:
+      "A memorable achievement built on teamwork, commitment and determination.",
+  },
+  {
+    year: "2023",
+    title: "CROATIAN CUP WINNERS",
+    description:
+      "A proud milestone in our competitive cricket journey.",
+  },
+  {
+    year: "2024",
+    title: "BUILDING OUR FUTURE",
+    description:
+      "Strengthening our club identity and bringing our cricket community closer.",
+  },
+  {
+    year: "2025",
+    title: "GROWING STRONGER",
+    description:
+      "Developing players, creating opportunities and growing together.",
+  },
+  {
+    year: "2026",
+    title: "THE NEXT CHAPTER",
+    description:
+      "New challenges, new ambitions and more memories to make.",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -13,39 +52,50 @@ export default function Home() {
       <main>
         {/* NAVIGATION */}
         <header className="navbar">
-          <a href="#home" className="brand" onClick={closeMenu}>
+          <a
+            href="#home"
+            className="brand"
+            onClick={closeMenu}
+            aria-label="Zagreb Assassins home"
+          >
             <img
               src="/images/logo.png.jpeg"
-              alt="Zagreb Assassins Cricket Club"
-              className="logo"
+              alt="Zagreb Assassins Cricket Club logo"
+              className="brandLogo"
             />
-            <span>
+            <span className="brandWords">
               ZAGREB <strong>ASSASSINS</strong>
               <small>CRICKET CLUB</small>
             </span>
           </a>
 
           <button
-            className="menuButton"
+            className="menuToggle"
+            type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle navigation menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
             {menuOpen ? "✕" : "☰"}
           </button>
 
-          <nav className={menuOpen ? "navLinks open" : "navLinks"}>
-            <a href="#home" onClick={closeMenu}>HOME</a>
-            <a href="#history" onClick={closeMenu}>HISTORY</a>
-            <a href="#ground" onClick={closeMenu}>GROUND</a>
-            <a href="#gallery" onClick={closeMenu}>GALLERY</a>
-            <a href="#join" onClick={closeMenu}>JOIN US</a>
-            <a href="#support" onClick={closeMenu}>SUPPORT</a>
-            <a href="#contact" onClick={closeMenu}>CONTACT</a>
+          <nav className={`navLinks ${menuOpen ? "navOpen" : ""}`}>
+            {[
+              ["HOME", "#home"],
+              ["OUR STORY", "#history"],
+              ["GROUND", "#ground"],
+              ["GALLERY", "#gallery"],
+              ["JOIN US", "#join"],
+              ["CONTACT", "#contact"],
+            ].map(([label, href]) => (
+              <a href={href} key={href} onClick={closeMenu}>
+                {label}
+              </a>
+            ))}
           </nav>
         </header>
 
-        {/* HERO */}
+        {/* PREMIUM HERO */}
         <section className="hero" id="home">
           <video
             className="heroVideo"
@@ -53,196 +103,178 @@ export default function Home() {
             muted
             loop
             playsInline
+            preload="metadata"
             poster="/images/team.jpg.jpeg"
+            aria-hidden="true"
           >
             <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
 
-          <div className="heroOverlay" />
+          <div className="heroShade" />
+          <div className="heroGrain" />
 
           <div className="heroContent">
-            <p className="eyebrow">ZAGREB · CROATIA</p>
-            <h1>
-              BUILT BY
-              <br />
-              <span>PASSION.</span>
-              <br />
-              UNITED BY CRICKET.
-            </h1>
-            <p className="heroDescription">
-              More than a team. A community driven by cricket,
-              commitment and the spirit of togetherness.
+            <div className="heroLogoWrap">
+              <img
+                src="/images/logo.png.jpeg"
+                alt="Zagreb Assassins"
+                className="heroLogo"
+              />
+            </div>
+
+            <p className="heroEyebrow">
+              <span className="liveDot" />
+              ZAGREB · CROATIA · EST. 2023
             </p>
 
-            <div className="heroButtons">
-              <a href="#join" className="button buttonLight">
-                JOIN THE TEAM ↗
-              </a>
-              <a href="#history" className="button buttonOutline">
-                OUR STORY
-              </a>
-            </div>
+            <h1 className="heroTitle">
+              ZAGREB
+              <br />
+              <span>ASSASSINS.</span>
+            </h1>
 
-            <div className="heroBottom">
-              <span>EST. ZAGREB, CROATIA</span>
-              <span>CRICKET · COMMUNITY · PASSION</span>
+            <p className="heroSubline">
+              CRICKET CLUB <span>·</span> UNITED BY THE GAME
+            </p>
+
+            <a href="#join" className="heroCta">
+              <span>JOIN THE TEAM</span>
+              <span className="ctaArrow">↗</span>
+            </a>
+
+            {/* CSS cricket bat animation */}
+            <div className="batStage" aria-hidden="true">
+              <div className="batShadow" />
+              <div className="cricketBat">
+                <div className="batHandle" />
+                <div className="batNeck" />
+                <div className="batBlade">
+                  <div className="batSpine" />
+                  <div className="batMark">ZA</div>
+                </div>
+              </div>
+              <div className="batBall" />
             </div>
           </div>
+
+          <div className="heroBottom">
+            <span>CRICKET <i>·</i> COMMUNITY <i>·</i> PASSION</span>
+            <a href="#history">
+              DISCOVER OUR STORY <span>↓</span>
+            </a>
+          </div>
+
+          <div className="heroSideLabel">ZAGREB ASSASSINS CC</div>
         </section>
 
-        {/* INTRODUCTION */}
-        <section className="intro section">
-          <div className="sectionLabel">
-            <span>01</span> WHO WE ARE
+        {/* CLUB INTRO */}
+        <section className="intro section" id="story">
+          <div className="sectionTopline">
+            <span className="sectionNumber">01 / THE CLUB</span>
+            <span className="sectionRule" />
+            <span className="sectionLocation">ZAGREB, CROATIA</span>
           </div>
 
           <div className="introGrid">
-            <h2>
-              ONE CLUB.
-              <br />
-              <span>ONE FAMILY.</span>
-            </h2>
+            <div>
+              <p className="redLabel">MORE THAN A GAME</p>
+              <h2 className="displayHeading">
+                ONE CLUB.
+                <br />
+                ONE <span>FAMILY.</span>
+              </h2>
+            </div>
 
-            <div className="introText">
-              <p>
-                Zagreb Assassins is a cricket club built on teamwork,
-                discipline, friendship and a shared love for the game.
+            <div className="introCopy">
+              <p className="largeCopy">
+                Cricket brings us together. Teamwork makes us stronger.
               </p>
               <p>
-                Based in Zagreb, Croatia, we bring people together
-                through cricket, creating opportunities to play,
-                improve and grow as a team.
+                Zagreb Assassins is a cricket club built around the
+                spirit of competition, friendship and a shared love
+                for the game. Based in Zagreb, Croatia, we bring
+                people together through cricket.
               </p>
-              <a href="#join" className="textLink">
-                BECOME PART OF OUR STORY ↗
+              <a href="#join" className="underlinedLink">
+                BECOME PART OF THE CLUB <span>↗</span>
               </a>
             </div>
           </div>
 
-          <div className="teamImageWrap">
+          <div className="featureImage">
             <img
               src="/images/team.jpg.jpeg"
               alt="Zagreb Assassins cricket team"
-              className="teamImage"
+              loading="lazy"
             />
-            <div className="imageCaption">
-              <span>THE ASSASSINS</span>
-              <span>ZAGREB, CROATIA</span>
+            <div className="featureImageOverlay" />
+            <div className="featureImageCaption">
+              <span>THE PEOPLE BEHIND THE GAME</span>
+              <span>ZA / 001</span>
             </div>
           </div>
         </section>
 
         {/* HISTORY */}
         <section className="history section" id="history">
-          <div className="sectionLabel">
-            <span>02</span> OUR JOURNEY
+          <div className="sectionTopline">
+            <span className="sectionNumber">02 / OUR JOURNEY</span>
+            <span className="sectionRule" />
+            <span className="sectionLocation">BUILT TOGETHER</span>
           </div>
 
-          <div className="sectionHeading">
-            <h2>
-              MADE THROUGH
-              <br />
-              <span>THE GAME.</span>
-            </h2>
+          <div className="historyHeading">
+            <div>
+              <p className="redLabel">EVERY SEASON MATTERS</p>
+              <h2 className="displayHeading">
+                OUR STORY.
+                <br />
+                <span>OUR LEGACY.</span>
+              </h2>
+            </div>
             <p>
-              Every season brings a new challenge, every match
-              creates a memory, and every player becomes part of
-              our journey.
+              Every match leaves a memory. Every challenge makes
+              us better. This is our journey, and the next chapter
+              is still being written.
             </p>
           </div>
 
           <div className="timeline">
-            <article className="timelineItem">
-              <span className="timelineYear">2023</span>
-              <div className="timelineDot" />
-              <div>
-                <h3>ECS CHAMPIONS</h3>
-                <p>
-                  A memorable achievement that celebrated our
-                  commitment, teamwork and determination.
-                </p>
-              </div>
-            </article>
-
-            <article className="timelineItem">
-              <span className="timelineYear">2023</span>
-              <div className="timelineDot" />
-              <div>
-                <h3>CROATIAN CUP WINNERS</h3>
-                <p>
-                  Another important milestone in the club’s
-                  competitive journey.
-                </p>
-              </div>
-            </article>
-
-            <article className="timelineItem">
-              <span className="timelineYear">2024</span>
-              <div className="timelineDot" />
-              <div>
-                <h3>THE BEGINNING</h3>
-                <p>
-                  Building our foundations, strengthening our
-                  identity and bringing our cricket community closer.
-                </p>
-              </div>
-            </article>
-
-            <article className="timelineItem">
-              <span className="timelineYear">2025</span>
-              <div className="timelineDot" />
-              <div>
-                <h3>GROWING STRONGER</h3>
-                <p>
-                  Continuing to develop our players, our team
-                  spirit and our presence in Croatian cricket.
-                </p>
-              </div>
-            </article>
-
-            <article className="timelineItem">
-              <span className="timelineYear">2026</span>
-              <div className="timelineDot" />
-              <div>
-                <h3>THE NEXT CHAPTER</h3>
-                <p>
-                  New goals, fresh opportunities and another
-                  chapter in the Zagreb Assassins story.
-                </p>
-              </div>
-            </article>
-
-            <article className="timelineItem">
-              <span className="timelineYear">NEXT</span>
-              <div className="timelineDot" />
-              <div>
-                <h3>OUR AMBITION</h3>
-                <p>
-                  Keep improving, welcome new talent and continue
-                  representing our club with pride.
-                </p>
-              </div>
-            </article>
+            {milestones.map((item, index) => (
+              <article className="timelineItem" key={`${item.year}-${item.title}`}>
+                <span className="timelineIndex">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="timelineYear">{item.year}</span>
+                <div className="timelineContent">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+                <span className="timelineArrow">↗</span>
+              </article>
+            ))}
           </div>
         </section>
 
-        {/* GROUND */}
+        {/* HOME GROUND */}
         <section className="ground section" id="ground">
-          <div className="sectionLabel">
-            <span>03</span> OUR HOME
+          <div className="sectionTopline">
+            <span className="sectionNumber">03 / OUR HOME</span>
+            <span className="sectionRule" />
+            <span className="sectionLocation">MATCH DAY</span>
           </div>
 
           <div className="groundGrid">
-            <div>
-              <p className="eyebrow">WHERE WE PLAY</p>
-              <h2>
-                OUR HOME
+            <div className="groundText">
+              <p className="redLabel">WHERE WE PLAY</p>
+              <h2 className="displayHeading">
+                OUR HOME.
                 <br />
-                <span>GROUND.</span>
+                <span>OUR GROUND.</span>
               </h2>
-              <p className="groundDescription">
-                Mladost Cricket Ground is our home for cricket,
-                training, competition and community.
+              <p className="bodyCopy">
+                The place where we train, compete, share the game
+                and make memories together.
               </p>
 
               <div className="groundDetails">
@@ -260,9 +292,9 @@ export default function Home() {
                 href="https://maps.app.goo.gl/itNj4GVd9uFePYSu7"
                 target="_blank"
                 rel="noreferrer"
-                className="button buttonDark"
+                className="darkButton"
               >
-                OPEN GOOGLE MAPS ↗
+                OPEN GOOGLE MAPS <span>↗</span>
               </a>
             </div>
 
@@ -270,16 +302,17 @@ export default function Home() {
               href="https://maps.app.goo.gl/itNj4GVd9uFePYSu7"
               target="_blank"
               rel="noreferrer"
-              className="groundImageLink"
-              aria-label="Open Mladost Cricket Ground in Google Maps"
+              className="groundPhoto"
+              aria-label="Find Mladost Cricket Ground on Google Maps"
             >
               <img
                 src="/images/ground.png"
-                alt="Mladost Cricket Ground in Zagreb"
-                className="groundImage"
+                alt="Mladost Cricket Ground, Zagreb"
+                loading="lazy"
               />
-              <span className="groundImageTag">
-                OUR HOME · ZAGREB
+              <span className="groundPhotoLabel">
+                <span>OUR HOME</span>
+                <strong>ZAGREB, CROATIA ↗</strong>
               </span>
             </a>
           </div>
@@ -287,80 +320,106 @@ export default function Home() {
 
         {/* GALLERY */}
         <section className="gallery section" id="gallery">
-          <div className="sectionLabel">
-            <span>04</span> MOMENTS THAT MATTER
+          <div className="sectionTopline">
+            <span className="sectionNumber">04 / THE MOMENTS</span>
+            <span className="sectionRule" />
+            <span className="sectionLocation">OFF THE PITCH</span>
           </div>
 
-          <div className="sectionHeading">
-            <h2>
-              LIFE THROUGH
-              <br />
-              <span>OUR LENS.</span>
-            </h2>
-            <p>
-              The people, the matches and the memories that make
-              Zagreb Assassins special.
-            </p>
+          <div className="galleryHeading">
+            <div>
+              <p className="redLabel">PEOPLE. MATCHES. MEMORIES.</p>
+              <h2 className="displayHeading">
+                LIFE THROUGH
+                <br />
+                <span>OUR LENS.</span>
+              </h2>
+            </div>
+            <a
+              href={instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="darkButton"
+            >
+              FOLLOW ON INSTAGRAM <span>↗</span>
+            </a>
           </div>
 
           <div className="galleryGrid">
-            <div className="galleryItem galleryLarge">
+            <a
+              href={instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="galleryPhoto galleryPhotoLarge"
+            >
               <img
                 src="/images/team.jpg.jpeg"
                 alt="Zagreb Assassins team"
                 loading="lazy"
               />
-              <span>THE TEAM</span>
-            </div>
-
-            <div className="galleryItem">
-              <img
-                src="/images/ground.png"
-                alt="Cricket ground"
-                loading="lazy"
-              />
-              <span>OUR GROUND</span>
-            </div>
+              <span className="galleryOverlay">
+                <span>01 / THE TEAM</span>
+                <strong>UNITED BY CRICKET</strong>
+                <i>↗</i>
+              </span>
+            </a>
 
             <a
-              href="https://www.instagram.com/zagreb_assassins_cricket?stkn=MXg2em96andld2dobA=="
+              href={instagram}
               target="_blank"
               rel="noreferrer"
-              className="galleryCallout"
+              className="galleryPhoto"
             >
-              <span className="instagramSymbol">◎</span>
-              <h3>MORE MOMENTS.</h3>
-              <p>Follow our journey on Instagram.</p>
-              <span className="textLink">VIEW INSTAGRAM ↗</span>
+              <img
+                src="/images/ground.png"
+                alt="Cricket ground in Zagreb"
+                loading="lazy"
+              />
+              <span className="galleryOverlay">
+                <span>02 / OUR HOME</span>
+                <strong>MATCH DAY</strong>
+                <i>↗</i>
+              </span>
+            </a>
+          </div>
+
+          <div className="galleryFooter">
+            <span>MORE MOMENTS. MORE MEMORIES.</span>
+            <a href={instagram} target="_blank" rel="noreferrer">
+              @ZAGREB_ASSASSINS_CRICKET ↗
             </a>
           </div>
         </section>
 
-        {/* JOIN US */}
+        {/* JOIN THE CLUB */}
         <section className="join section" id="join">
-          <div className="sectionLabel">
-            <span>05</span> YOUR NEXT CHAPTER
+          <div className="joinBackdrop">ZA</div>
+
+          <div className="sectionTopline">
+            <span className="sectionNumber">05 / YOUR NEXT CHAPTER</span>
+            <span className="sectionRule" />
+            <span className="sectionLocation">NEW PLAYERS WELCOME</span>
           </div>
 
           <div className="joinGrid">
-            <div>
-              <p className="eyebrow">READY TO PLAY?</p>
-              <h2>
-                YOUR GAME.
+            <div className="joinIntro">
+              <p className="joinEyebrow">YOUR MOMENT STARTS HERE</p>
+              <h2 className="displayHeading">
+                READY
                 <br />
-                <span>YOUR TEAM.</span>
+                TO <span>PLAY?</span>
               </h2>
-              <p className="joinDescription">
-                Want to play cricket in Zagreb? Whether you are
-                experienced or looking to get involved, contact
-                us and introduce yourself.
+              <p>
+                Want to play cricket in Zagreb? Whether you have
+                years of experience or are looking to get involved,
+                introduce yourself to the team.
               </p>
 
-              <ul className="joinList">
-                <li>Cricket and team spirit</li>
-                <li>Training and development</li>
-                <li>A welcoming cricket community</li>
-              </ul>
+              <div className="joinPerks">
+                <span><i>01</i> TEAM SPIRIT</span>
+                <span><i>02</i> TRAINING & DEVELOPMENT</span>
+                <span><i>03</i> CRICKET COMMUNITY</span>
+              </div>
             </div>
 
             <form
@@ -368,24 +427,36 @@ export default function Home() {
               action="https://formspree.io/f/xppqzzdd"
               method="POST"
             >
-              <h3>LET'S CONNECT.</h3>
-              <p>Send us your details and we will be in touch.</p>
+              <div className="formHeader">
+                <div>
+                  <span className="formKicker">ZAGREB ASSASSINS CC</span>
+                  <h3>LET'S CONNECT.</h3>
+                </div>
+                <span className="formIcon">↗</span>
+              </div>
 
-              <label htmlFor="name">YOUR NAME</label>
+              <p className="formDescription">
+                Tell us a little about yourself. We would love to
+                hear from you.
+              </p>
+
+              <label htmlFor="name">YOUR NAME *</label>
               <input
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Full name"
+                autoComplete="name"
                 required
               />
 
-              <label htmlFor="email">EMAIL ADDRESS</label>
+              <label htmlFor="email">EMAIL ADDRESS *</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 placeholder="you@example.com"
+                autoComplete="email"
                 required
               />
 
@@ -395,162 +466,97 @@ export default function Home() {
                 name="phone"
                 type="tel"
                 placeholder="Your contact number"
+                autoComplete="tel"
               />
 
-              <label htmlFor="message">TELL US ABOUT YOURSELF</label>
+              <label htmlFor="experience">CRICKET EXPERIENCE</label>
+              <select id="experience" name="experience" defaultValue="">
+                <option value="" disabled>Select an option</option>
+                <option value="Experienced player">Experienced player</option>
+                <option value="Some experience">Some experience</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Interested in the club">Interested in the club</option>
+              </select>
+
+              <label htmlFor="message">MESSAGE *</label>
               <textarea
                 id="message"
                 name="message"
-                rows={4}
-                placeholder="Your cricket experience or any questions..."
+                rows={3}
+                placeholder="Tell us about yourself..."
                 required
               />
 
-              <button type="submit" className="button buttonLight submitButton">
-                SEND YOUR MESSAGE ↗
+              <button type="submit" className="formSubmit">
+                SEND YOUR MESSAGE <span>↗</span>
               </button>
+
+              <p className="formNote">
+                Your details will be submitted through our contact form.
+              </p>
             </form>
-          </div>
-        </section>
-
-        {/* SUPPORT — BANK DETAILS REMOVED */}
-        <section className="support section" id="support">
-          <div className="sectionLabel">
-            <span>06</span> STAND WITH THE TEAM
-          </div>
-
-          <div className="sectionHeading">
-            <h2>
-              EVERY CONTRIBUTION
-              <br />
-              <span>MAKES A DIFFERENCE.</span>
-            </h2>
-            <p>
-              Support Zagreb Assassins by sharing our journey,
-              connecting with the club and helping our cricket
-              community grow.
-            </p>
-          </div>
-
-          <div className="supportGrid">
-            <article className="supportCard">
-              <div className="cardTop">
-                <span className="cardNumber">01</span>
-                <span className="cardMark">↗</span>
-              </div>
-              <p className="cardLabel">FOLLOW OUR JOURNEY</p>
-              <h3>Instagram</h3>
-              <div className="cardLine" />
-              <p>
-                Follow our matches, team moments and club updates.
-              </p>
-              <a
-                href="https://www.instagram.com/zagreb_assassins_cricket?stkn=MXg2em96andld2dobA=="
-                target="_blank"
-                rel="noreferrer"
-                className="cardLink"
-              >
-                FOLLOW US ↗
-              </a>
-            </article>
-
-            <article className="supportCard">
-              <div className="cardTop">
-                <span className="cardNumber">02</span>
-                <span className="cardMark">↗</span>
-              </div>
-              <p className="cardLabel">JOIN THE COMMUNITY</p>
-              <h3>WhatsApp</h3>
-              <div className="cardLine" />
-              <p>
-                Connect with the community and learn more about
-                getting involved with the club.
-              </p>
-              <a
-                href="https://chat.whatsapp.com/ItcFiILa3B3LkTSkdpyTxY?s=sw&p=a&ilr=4&iam=2"
-                target="_blank"
-                rel="noreferrer"
-                className="cardLink"
-              >
-                CONNECT WITH US ↗
-              </a>
-            </article>
-
-            <article className="supportCard">
-              <div className="cardTop">
-                <span className="cardNumber">03</span>
-                <span className="cardMark">↗</span>
-              </div>
-              <p className="cardLabel">GET IN TOUCH</p>
-              <h3>Contact Us</h3>
-              <div className="cardLine" />
-              <p>
-                Have a question, an idea or an opportunity to
-                work together? We would love to hear from you.
-              </p>
-              <a href="#contact" className="cardLink">
-                CONTACT THE CLUB ↗
-              </a>
-            </article>
           </div>
         </section>
 
         {/* CONTACT */}
         <section className="contact section" id="contact">
-          <div className="sectionLabel">
-            <span>07</span> SAY HELLO
+          <div className="sectionTopline">
+            <span className="sectionNumber">06 / GET IN TOUCH</span>
+            <span className="sectionRule" />
+            <span className="sectionLocation">ZAGREB, CROATIA</span>
           </div>
 
           <div className="contactGrid">
             <div>
-              <p className="eyebrow">LET'S TALK CRICKET</p>
-              <h2>
-                LET'S
+              <p className="redLabel">LET'S TALK CRICKET</p>
+              <h2 className="displayHeading">
+                SAY
                 <br />
-                <span>CONNECT.</span>
+                <span>HELLO.</span>
               </h2>
-              <p className="contactDescription">
-                For enquiries about joining the team, cricket,
-                collaboration or club activities, get in touch.
+              <p className="bodyCopy">
+                Questions about joining the club, cricket or
+                collaboration? Get in touch with us.
               </p>
             </div>
 
-            <div className="contactDetails">
-              <div className="contactRow">
-                <span>EMAIL</span>
-                <a href="mailto:zagrebassassins@gmail.com">
-                  zagrebassassins@gmail.com
-                </a>
-              </div>
+            <div className="contactInfo">
+              <a
+                href="mailto:zagrebassassins@gmail.com"
+                className="contactRow"
+              >
+                <span>EMAIL US</span>
+                <strong>zagrebassassins@gmail.com</strong>
+                <i>↗</i>
+              </a>
 
-              <div className="contactRow">
-                <span>PHONE</span>
-                <a href="tel:+385917271658">
-                  +385 91 727 1658
-                </a>
-              </div>
+              <a href="tel:+385917271658" className="contactRow">
+                <span>CALL US</span>
+                <strong>+385 91 727 1658</strong>
+                <i>↗</i>
+              </a>
 
-              <div className="contactRow">
-                <span>LOCATION</span>
-                <p>Zagreb, Croatia</p>
-              </div>
+              <a
+                href={instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="contactRow"
+              >
+                <span>FOLLOW THE JOURNEY</span>
+                <strong>Instagram</strong>
+                <i>↗</i>
+              </a>
 
-              <div className="contactSocials">
-                <a
-                  href="https://www.instagram.com/zagreb_assassins_cricket?stkn=MXg2em96andld2dobA=="
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  INSTAGRAM ↗
-                </a>
-                <a
-                  href="https://chat.whatsapp.com/ItcFiILa3B3LkTSkdpyTxY?s=sw&p=a&ilr=4&iam=2"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  WHATSAPP ↗
-                </a>
-              </div>
+              <a
+                href={whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                className="contactRow"
+              >
+                <span>JOIN THE COMMUNITY</span>
+                <strong>WhatsApp</strong>
+                <i>↗</i>
+              </a>
             </div>
           </div>
         </section>
@@ -565,12 +571,14 @@ export default function Home() {
             </span>
           </a>
 
-          <p>
+          <p className="footerMotto">
             BUILT BY PASSION. UNITED BY CRICKET.
           </p>
 
           <div className="footerBottom">
-            <span>© {new Date().getFullYear()} Zagreb Assassins Cricket Club</span>
+            <span>
+              © {new Date().getFullYear()} Zagreb Assassins Cricket Club
+            </span>
             <a href="#home">BACK TO TOP ↑</a>
           </div>
         </footer>
@@ -578,13 +586,14 @@ export default function Home() {
 
       <style jsx global>{`
         :root {
-          --black: #101010;
-          --dark: #171717;
-          --paper: #f3f1eb;
-          --white: #ffffff;
-          --red: #e32b35;
-          --muted: #a6a6a6;
-          --line: rgba(255, 255, 255, 0.16);
+          --black: #090a0b;
+          --dark: #111315;
+          --paper: #f2f0ea;
+          --white: #fff;
+          --red: #ed2939;
+          --muted: #a3a5a7;
+          --line: rgba(255, 255, 255, 0.15);
+          --max: 1440px;
         }
 
         * {
@@ -593,7 +602,7 @@ export default function Home() {
 
         html {
           scroll-behavior: smooth;
-          scroll-padding-top: 82px;
+          scroll-padding-top: 85px;
         }
 
         body {
@@ -601,6 +610,7 @@ export default function Home() {
           background: var(--paper);
           color: var(--black);
           font-family: Arial, Helvetica, sans-serif;
+          -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -610,8 +620,13 @@ export default function Home() {
 
         button,
         input,
-        textarea {
+        textarea,
+        select {
           font: inherit;
+        }
+
+        img {
+          max-width: 100%;
         }
 
         button,
@@ -619,19 +634,25 @@ export default function Home() {
           -webkit-tap-highlight-color: transparent;
         }
 
+        ::selection {
+          background: var(--red);
+          color: white;
+        }
+
+        /* NAVIGATION */
+
         .navbar {
           position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 20;
+          inset: 0 0 auto;
+          z-index: 30;
           display: flex;
-          width: 100%;
-          min-height: 86px;
+          min-height: 88px;
           align-items: center;
           justify-content: space-between;
+          gap: 25px;
           padding: 15px 6%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.17);
           color: white;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .brand,
@@ -639,41 +660,48 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 12px;
-          font-size: 15px;
-          font-weight: 800;
-          letter-spacing: 1.2px;
+          flex-shrink: 0;
         }
 
-        .brand .logo {
-          width: 52px;
-          height: 52px;
+        .brandLogo {
+          width: 49px;
+          height: 49px;
           object-fit: contain;
         }
 
-        .brand strong,
+        .brandWords,
+        .footerBrand > span {
+          font-size: 13px;
+          font-weight: 900;
+          letter-spacing: 1.4px;
+        }
+
+        .brandWords strong,
         .footerBrand strong {
           color: var(--red);
         }
 
-        .brand small,
+        .brandWords small,
         .footerBrand small {
           display: block;
           margin-top: 5px;
-          font-size: 9px;
-          font-weight: 500;
+          font-size: 8px;
+          font-weight: 600;
           letter-spacing: 3px;
         }
 
         .navLinks {
           display: flex;
           align-items: center;
-          gap: 25px;
+          gap: clamp(13px, 2.2vw, 30px);
         }
 
         .navLinks a {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 1.3px;
+          padding: 10px 0;
+          color: #ededed;
+          font-size: 9px;
+          font-weight: 800;
+          letter-spacing: 1.1px;
           transition: color 0.2s ease;
         }
 
@@ -681,28 +709,34 @@ export default function Home() {
           color: var(--red);
         }
 
-        .menuButton {
+        .menuToggle {
           display: none;
-          color: white;
-          background: transparent;
+          padding: 8px;
           border: 0;
-          font-size: 28px;
+          background: transparent;
+          color: white;
+          font-size: 27px;
           cursor: pointer;
         }
+
+        /* HERO */
 
         .hero {
           position: relative;
           display: flex;
-          min-height: 720px;
-          min-height: min(850px, 100svh);
+          min-height: min(900px, 100svh);
+          min-height: max(700px, 100svh);
           align-items: center;
+          justify-content: center;
           overflow: hidden;
-          background: #161616;
+          isolation: isolate;
+          background: #101112;
           color: white;
         }
 
         .heroVideo,
-        .heroOverlay {
+        .heroShade,
+        .heroGrain {
           position: absolute;
           inset: 0;
           width: 100%;
@@ -710,287 +744,557 @@ export default function Home() {
         }
 
         .heroVideo {
+          z-index: -3;
           object-fit: cover;
+          object-position: center;
         }
 
-        .heroOverlay {
+        .heroShade {
+          z-index: -2;
           background:
-            linear-gradient(90deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.32)),
-            linear-gradient(0deg, rgba(0, 0, 0, 0.65), transparent 60%);
+            radial-gradient(
+              ellipse at 70% 42%,
+              rgba(10, 10, 10, 0.05),
+              rgba(0, 0, 0, 0.4) 60%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(0, 0, 0, 0.88) 0%,
+              rgba(0, 0, 0, 0.55) 56%,
+              rgba(0, 0, 0, 0.36) 100%
+            ),
+            linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.72),
+              transparent 36%,
+              rgba(0, 0, 0, 0.3)
+            );
+        }
+
+        .heroGrain {
+          z-index: -1;
+          pointer-events: none;
+          opacity: 0.12;
+          background-image: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(255, 255, 255, 0.08) 4px
+          );
         }
 
         .heroContent {
           position: relative;
-          z-index: 1;
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 140px 6% 65px;
+          width: min(1100px, 100%);
+          padding: 125px 7% 115px;
+          animation: heroEnter 1s ease both;
         }
 
-        .eyebrow {
-          margin: 0 0 22px;
+        .heroLogoWrap {
+          display: flex;
+          width: 118px;
+          height: 118px;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 26px;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.3);
+          box-shadow: 0 10px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .heroLogo {
+          width: 90%;
+          height: 90%;
+          object-fit: contain;
+          animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        .heroEyebrow,
+        .redLabel {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin: 0 0 20px;
           color: var(--red);
-          font-size: 11px;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: 2.5px;
+        }
+
+        .liveDot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: var(--red);
+          box-shadow: 0 0 12px rgba(237, 41, 57, 0.8);
+        }
+
+        .heroTitle {
+          margin: 0;
+          font-size: clamp(55px, 9vw, 116px);
+          font-weight: 950;
+          line-height: 0.88;
+          letter-spacing: -5px;
+        }
+
+        .heroTitle span {
+          color: var(--red);
+        }
+
+        .heroSubline {
+          margin: 22px 0 31px;
+          color: #e1e1e1;
+          font-size: 10px;
           font-weight: 800;
           letter-spacing: 3px;
         }
 
-        .hero h1,
-        .section h2 {
-          margin: 0;
-          font-size: clamp(42px, 7.5vw, 94px);
-          font-weight: 900;
-          line-height: 0.98;
-          letter-spacing: -3px;
-        }
-
-        .hero h1 span,
-        .section h2 span {
+        .heroSubline span {
+          padding: 0 7px;
           color: var(--red);
         }
 
-        .heroDescription {
-          max-width: 490px;
-          margin: 25px 0 30px;
-          color: #dddddd;
-          font-size: 16px;
-          line-height: 1.8;
-        }
-
-        .heroButtons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-
-        .button {
+        .heroCta {
+          position: relative;
           display: inline-flex;
-          min-height: 48px;
+          min-width: 224px;
+          min-height: 59px;
           align-items: center;
-          justify-content: center;
-          padding: 0 22px;
-          border: 1px solid transparent;
-          cursor: pointer;
+          justify-content: space-between;
+          gap: 24px;
+          padding: 0 21px;
+          overflow: hidden;
+          background: var(--red);
+          color: white;
           font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 1.2px;
+          font-weight: 900;
+          letter-spacing: 1.5px;
           transition:
-            background 0.2s ease,
-            color 0.2s ease,
-            border-color 0.2s ease,
-            transform 0.2s ease;
+            background 0.25s ease,
+            transform 0.25s ease;
         }
 
-        .button:hover {
-          transform: translateY(-2px);
+        .heroCta:hover {
+          transform: translateY(-3px);
+          background: #c8192a;
         }
 
-        .buttonLight {
+        .ctaArrow {
+          font-size: 21px;
+          transition: transform 0.25s ease;
+        }
+
+        .heroCta:hover .ctaArrow {
+          transform: translate(3px, -3px);
+        }
+
+        /* CSS BAT ANIMATION */
+
+        .batStage {
+          position: absolute;
+          right: 9%;
+          bottom: 9%;
+          width: 185px;
+          height: 330px;
+          pointer-events: none;
+          transform: rotate(-8deg);
+        }
+
+        .cricketBat {
+          position: absolute;
+          top: 20px;
+          left: 62px;
+          width: 65px;
+          height: 250px;
+          transform-origin: 50% 18%;
+          animation: batSwing 3.2s ease-in-out infinite;
+        }
+
+        .batHandle {
+          position: absolute;
+          top: 0;
+          left: 23px;
+          width: 19px;
+          height: 68px;
+          border: 2px solid #b8a18a;
+          border-radius: 5px 5px 2px 2px;
+          background: repeating-linear-gradient(
+            0deg,
+            #242424 0,
+            #242424 4px,
+            #dad2c6 5px,
+            #dad2c6 6px
+          );
+        }
+
+        .batNeck {
+          position: absolute;
+          top: 62px;
+          left: 18px;
+          width: 29px;
+          height: 23px;
+          background: linear-gradient(90deg, #977047, #f0d5a2, #9a754c);
+          clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+        }
+
+        .batBlade {
+          position: absolute;
+          top: 78px;
+          left: 2px;
+          width: 61px;
+          height: 164px;
+          overflow: hidden;
+          border: 1px solid #b18b58;
+          border-radius: 8px 8px 20px 20px;
+          background: linear-gradient(
+            90deg,
+            #936c3d,
+            #e7c28a 25%,
+            #f3dbad 52%,
+            #c99a5d 82%,
+            #855e35
+          );
+          box-shadow: 5px 9px 22px rgba(0, 0, 0, 0.3);
+        }
+
+        .batSpine {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 48%;
+          width: 7px;
+          background: rgba(255, 245, 220, 0.32);
+        }
+
+        .batMark {
+          position: absolute;
+          top: 62px;
+          left: 0;
+          width: 100%;
+          color: #342416;
+          text-align: center;
+          font-size: 18px;
+          font-weight: 950;
+          letter-spacing: -2px;
+        }
+
+        .batShadow {
+          position: absolute;
+          right: 0;
+          bottom: 24px;
+          left: 0;
+          height: 24px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.45);
+          filter: blur(10px);
+          animation: shadowPulse 3.2s ease-in-out infinite;
+        }
+
+        .batBall {
+          position: absolute;
+          top: 130px;
+          left: 5px;
+          width: 22px;
+          height: 22px;
+          border: 2px dashed rgba(255, 255, 255, 0.75);
+          border-radius: 50%;
           background: var(--red);
-          color: white;
-        }
-
-        .buttonLight:hover {
-          background: #bf1e28;
-        }
-
-        .buttonOutline {
-          border-color: rgba(255, 255, 255, 0.6);
-          color: white;
-          background: transparent;
-        }
-
-        .buttonOutline:hover {
-          border-color: white;
-          background: white;
-          color: var(--black);
-        }
-
-        .buttonDark {
-          background: var(--black);
-          color: white;
-        }
-
-        .buttonDark:hover {
-          background: var(--red);
+          box-shadow: 0 0 24px rgba(237, 41, 57, 0.5);
+          animation: ballFlight 3.2s ease-in-out infinite;
         }
 
         .heroBottom {
-          display: flex;
-          justify-content: space-between;
-          gap: 15px;
-          margin-top: 90px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255, 255, 255, 0.28);
-          color: #d4d4d4;
-          font-size: 9px;
-          font-weight: 700;
-          letter-spacing: 1.8px;
-        }
-
-        .section {
-          padding: 100px 7%;
-        }
-
-        .sectionLabel {
+          position: absolute;
+          right: 6%;
+          bottom: 26px;
+          left: 6%;
           display: flex;
           align-items: center;
-          gap: 13px;
-          margin-bottom: 55px;
-          font-size: 10px;
+          justify-content: space-between;
+          gap: 20px;
+          padding-top: 17px;
+          border-top: 1px solid rgba(255, 255, 255, 0.25);
+          color: #d5d5d5;
+          font-size: 9px;
           font-weight: 800;
-          letter-spacing: 2px;
+          letter-spacing: 1.5px;
         }
 
-        .sectionLabel span {
+        .heroBottom i {
+          padding: 0 5px;
+          color: var(--red);
+          font-style: normal;
+        }
+
+        .heroBottom a {
+          transition: color 0.2s;
+        }
+
+        .heroBottom a:hover {
           color: var(--red);
         }
 
+        .heroBottom a span {
+          padding-left: 10px;
+          color: var(--red);
+          font-size: 15px;
+        }
+
+        .heroSideLabel {
+          position: absolute;
+          top: 50%;
+          right: 18px;
+          color: rgba(255, 255, 255, 0.55);
+          font-size: 8px;
+          font-weight: 800;
+          letter-spacing: 3px;
+          writing-mode: vertical-rl;
+          transform: translateY(-50%);
+        }
+
+        /* COMMON SECTIONS */
+
+        .section {
+          padding: 110px max(7%, calc((100% - var(--max)) / 2));
+        }
+
+        .sectionTopline {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          margin-bottom: 60px;
+        }
+
+        .sectionNumber,
+        .sectionLocation {
+          flex-shrink: 0;
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 1.7px;
+        }
+
+        .sectionNumber {
+          color: var(--red);
+        }
+
+        .sectionLocation {
+          color: #777;
+        }
+
+        .sectionRule {
+          width: 100%;
+          height: 1px;
+          background: #d6d2c9;
+        }
+
+        .displayHeading {
+          margin: 0;
+          font-size: clamp(43px, 6vw, 79px);
+          font-weight: 950;
+          line-height: 0.96;
+          letter-spacing: -3.5px;
+        }
+
+        .displayHeading span {
+          color: var(--red);
+        }
+
+        .intro {
+          background: var(--paper);
+        }
+
         .introGrid,
-        .sectionHeading,
+        .historyHeading,
         .groundGrid,
+        .galleryHeading,
         .joinGrid,
         .contactGrid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 50px;
           align-items: start;
+          gap: 65px;
         }
 
-        .section h2 {
-          font-size: clamp(38px, 5.7vw, 72px);
-          letter-spacing: -2.5px;
+        .introCopy {
+          padding-top: 12px;
         }
 
-        .introText p,
-        .sectionHeading > p,
-        .groundDescription,
-        .joinDescription,
-        .contactDescription {
+        .largeCopy {
           margin: 0 0 18px;
-          color: #555;
-          font-size: 15px;
-          line-height: 1.9;
+          font-size: clamp(21px, 2.5vw, 30px);
+          font-weight: 800;
+          line-height: 1.35;
+          letter-spacing: -0.8px;
         }
 
-        .textLink {
-          display: inline-block;
-          margin-top: 10px;
-          padding-bottom: 6px;
+        .introCopy > p:not(.largeCopy),
+        .bodyCopy {
+          color: #606060;
+          font-size: 14px;
+          line-height: 1.95;
+        }
+
+        .underlinedLink {
+          display: inline-flex;
+          align-items: center;
+          gap: 15px;
+          margin-top: 17px;
+          padding-bottom: 8px;
           border-bottom: 1px solid var(--red);
-          font-size: 10px;
-          font-weight: 800;
+          font-size: 9px;
+          font-weight: 900;
           letter-spacing: 1.2px;
         }
 
-        .teamImageWrap {
-          position: relative;
-          height: 480px;
-          margin-top: 65px;
-          overflow: hidden;
-          background: #d5d1c8;
+        .underlinedLink span {
+          color: var(--red);
+          font-size: 16px;
         }
 
-        .teamImage {
+        .featureImage {
+          position: relative;
+          height: clamp(320px, 48vw, 570px);
+          margin-top: 70px;
+          overflow: hidden;
+          background: #c8c5bd;
+        }
+
+        .featureImage img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          transition: transform 0.6s ease;
         }
 
-        .teamImageWrap:hover .teamImage {
+        .featureImage:hover img {
           transform: scale(1.025);
         }
 
-        .imageCaption {
+        .featureImageOverlay {
           position: absolute;
-          right: 0;
-          bottom: 0;
-          left: 0;
+          inset: 35% 0 0;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+        }
+
+        .featureImageCaption {
+          position: absolute;
+          right: 23px;
+          bottom: 23px;
+          left: 23px;
           display: flex;
           justify-content: space-between;
-          gap: 10px;
-          padding: 20px;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+          gap: 15px;
           color: white;
-          font-size: 10px;
-          font-weight: 800;
+          font-size: 9px;
+          font-weight: 900;
           letter-spacing: 1.5px;
         }
+
+        /* HISTORY */
 
         .history {
           background: var(--black);
           color: white;
         }
 
-        .history .sectionHeading {
-          margin-bottom: 65px;
+        .history .sectionRule {
+          background: var(--line);
         }
 
-        .history .sectionHeading > p {
-          color: #b5b5b5;
+        .history .sectionLocation {
+          color: #a6a6a6;
+        }
+
+        .historyHeading {
+          align-items: end;
+          margin-bottom: 70px;
+        }
+
+        .historyHeading > p {
+          max-width: 410px;
+          margin: 0 0 5px;
+          color: #aaa;
+          font-size: 14px;
+          line-height: 1.9;
         }
 
         .timeline {
-          max-width: 900px;
-          margin-left: auto;
+          border-top: 1px solid var(--line);
         }
 
         .timelineItem {
           display: grid;
-          grid-template-columns: 90px 18px 1fr;
-          gap: 22px;
-          padding: 25px 0;
-          border-top: 1px solid var(--line);
+          grid-template-columns: 45px 85px minmax(0, 1fr) 25px;
+          align-items: center;
+          gap: 20px;
+          padding: 26px 5px;
+          border-bottom: 1px solid var(--line);
+          transition: background 0.25s, padding 0.25s;
+        }
+
+        .timelineItem:hover {
+          padding-right: 15px;
+          padding-left: 15px;
+          background: rgba(255, 255, 255, 0.025);
+        }
+
+        .timelineIndex {
+          color: var(--red);
+          font-size: 10px;
+          font-weight: 900;
         }
 
         .timelineYear {
-          padding-top: 2px;
-          color: var(--red);
+          color: #aaa;
           font-size: 12px;
           font-weight: 800;
-          letter-spacing: 1px;
         }
 
-        .timelineDot {
-          width: 10px;
-          height: 10px;
-          margin-top: 4px;
-          border: 2px solid var(--red);
-          border-radius: 50%;
+        .timelineContent h3 {
+          margin: 0 0 8px;
+          font-size: 15px;
+          letter-spacing: 0.8px;
         }
 
-        .timelineItem h3 {
-          margin: 0 0 10px;
-          font-size: 17px;
-          letter-spacing: 1px;
-        }
-
-        .timelineItem p {
-          max-width: 560px;
+        .timelineContent p {
+          max-width: 600px;
           margin: 0;
-          color: #aaa;
-          font-size: 13px;
+          color: #999;
+          font-size: 12px;
           line-height: 1.8;
         }
 
+        .timelineArrow {
+          color: var(--red);
+          font-size: 19px;
+          transition: transform 0.2s;
+        }
+
+        .timelineItem:hover .timelineArrow {
+          transform: translate(3px, -3px);
+        }
+
+        /* GROUND */
+
         .ground {
-          background: var(--paper);
+          background: #e9e6de;
         }
 
         .groundGrid {
           align-items: center;
+          gap: 70px;
         }
 
-        .groundDescription {
+        .groundText .bodyCopy {
           max-width: 430px;
-          margin-top: 25px;
+          margin: 25px 0;
         }
 
         .groundDetails {
-          margin: 28px 0;
-          border-top: 1px solid #d4d0c7;
+          margin: 25px 0;
+          border-top: 1px solid #d0ccc3;
         }
 
         .groundDetails div {
@@ -998,395 +1302,477 @@ export default function Home() {
           flex-direction: column;
           gap: 8px;
           padding: 17px 0;
-          border-bottom: 1px solid #d4d0c7;
+          border-bottom: 1px solid #d0ccc3;
         }
 
         .groundDetails span {
           color: #777;
           font-size: 9px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
+          font-weight: 900;
+          letter-spacing: 1.6px;
         }
 
         .groundDetails strong {
           font-size: 14px;
         }
 
-        .groundImageLink {
+        .darkButton {
+          display: inline-flex;
+          min-height: 50px;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          padding: 0 19px;
+          background: var(--black);
+          color: white;
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 1.2px;
+          transition: background 0.2s, transform 0.2s;
+        }
+
+        .darkButton:hover {
+          transform: translateY(-2px);
+          background: var(--red);
+        }
+
+        .darkButton span {
+          font-size: 17px;
+        }
+
+        .groundPhoto {
           position: relative;
           display: block;
-          min-height: 400px;
+          min-height: 440px;
           overflow: hidden;
-          background: #ddd;
+          background: #c8c5bd;
         }
 
-        .groundImage {
-          display: block;
-          width: 100%;
-          height: 450px;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-
-        .groundImageLink:hover .groundImage {
-          transform: scale(1.03);
-        }
-
-        .groundImageTag {
+        .groundPhoto img {
           position: absolute;
-          right: 15px;
-          bottom: 15px;
-          padding: 12px 15px;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s;
+        }
+
+        .groundPhoto:hover img {
+          transform: scale(1.04);
+        }
+
+        .groundPhotoLabel {
+          position: absolute;
+          right: 16px;
+          bottom: 16px;
+          left: 16px;
+          display: flex;
+          justify-content: space-between;
+          gap: 15px;
+          padding: 17px;
           background: var(--red);
           color: white;
           font-size: 9px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
+          font-weight: 900;
+          letter-spacing: 1px;
         }
+
+        /* GALLERY */
 
         .gallery {
-          background: #e7e4dc;
+          background: var(--paper);
         }
 
-        .gallery .sectionHeading {
+        .galleryHeading {
+          align-items: end;
           margin-bottom: 45px;
+        }
+
+        .galleryHeading .darkButton {
+          justify-self: end;
         }
 
         .galleryGrid {
           display: grid;
-          grid-template-columns: 1.3fr 1fr 1fr;
+          grid-template-columns: 1.4fr 1fr;
           gap: 16px;
         }
 
-        .galleryItem {
+        .galleryPhoto {
           position: relative;
-          min-height: 270px;
+          display: block;
+          height: 370px;
           overflow: hidden;
           background: #ccc;
         }
 
-        .galleryItem img {
-          display: block;
+        .galleryPhoto img {
           width: 100%;
           height: 100%;
-          min-height: 270px;
           object-fit: cover;
-          transition: transform 0.4s ease;
+          transition: transform 0.6s;
         }
 
-        .galleryItem:hover img {
-          transform: scale(1.04);
+        .galleryPhoto:hover img {
+          transform: scale(1.045);
         }
 
-        .galleryItem > span {
+        .galleryOverlay {
           position: absolute;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          padding: 25px 15px 15px;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
-          color: white;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
-        }
-
-        .galleryCallout {
+          inset: 40% 0 0;
           display: flex;
-          min-height: 270px;
           flex-direction: column;
           align-items: flex-start;
-          justify-content: center;
+          justify-content: end;
           padding: 25px;
-          background: var(--black);
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
           color: white;
         }
 
-        .instagramSymbol {
+        .galleryOverlay > span {
+          margin-bottom: 10px;
+          color: #ddd;
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 1.7px;
+        }
+
+        .galleryOverlay strong {
+          padding-right: 30px;
+          font-size: clamp(19px, 2.6vw, 28px);
+          letter-spacing: -0.5px;
+        }
+
+        .galleryOverlay i {
+          position: absolute;
+          right: 24px;
+          bottom: 24px;
           color: var(--red);
-          font-size: 34px;
+          font-size: 22px;
+          font-style: normal;
         }
 
-        .galleryCallout h3 {
-          margin: 20px 0 8px;
-          font-size: 19px;
-          letter-spacing: 1px;
+        .galleryFooter {
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid #d4d0c7;
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 1.2px;
         }
 
-        .galleryCallout p {
-          color: #bbb;
-          font-size: 13px;
-          line-height: 1.7;
+        .galleryFooter > span {
+          color: #777;
         }
+
+        .galleryFooter a:hover {
+          color: var(--red);
+        }
+
+        /* JOIN */
 
         .join {
+          position: relative;
+          overflow: hidden;
           background: var(--red);
           color: white;
+          isolation: isolate;
         }
 
-        .join .sectionLabel span,
-        .join .eyebrow {
+        .join .sectionRule {
+          background: rgba(255, 255, 255, 0.32);
+        }
+
+        .join .sectionNumber,
+        .join .sectionLocation {
           color: white;
         }
 
-        .joinDescription {
-          max-width: 460px;
-          margin-top: 25px;
-          color: #ffe6e6;
+        .joinBackdrop {
+          position: absolute;
+          z-index: -1;
+          top: 100px;
+          right: -30px;
+          color: rgba(0, 0, 0, 0.045);
+          font-size: clamp(250px, 45vw, 650px);
+          font-weight: 950;
+          line-height: 1;
+          letter-spacing: -30px;
+          pointer-events: none;
         }
 
-        .joinList {
-          display: grid;
-          gap: 15px;
-          margin: 30px 0 0;
-          padding: 0;
-          list-style: none;
+        .joinGrid {
+          align-items: start;
+          gap: 75px;
         }
 
-        .joinList li {
-          padding-bottom: 12px;
+        .joinEyebrow {
+          margin: 0 0 22px;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: 2px;
+        }
+
+        .joinIntro > p:not(.joinEyebrow) {
+          max-width: 420px;
+          margin: 25px 0;
+          color: #ffe5e7;
+          font-size: 14px;
+          line-height: 1.9;
+        }
+
+        .join .displayHeading span {
+          color: var(--black);
+        }
+
+        .joinPerks {
+          display: flex;
+          flex-direction: column;
+          margin-top: 35px;
+        }
+
+        .joinPerks span {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          padding: 17px 0;
           border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-          font-size: 13px;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: 1.2px;
         }
 
-        .joinList li::before {
-          content: "↗";
-          margin-right: 12px;
-          font-weight: 800;
+        .joinPerks i {
+          color: #ffe0e2;
+          font-size: 10px;
+          font-style: normal;
         }
 
         .joinForm {
+          position: relative;
           display: flex;
           flex-direction: column;
-          padding: 35px;
+          padding: clamp(23px, 4vw, 40px);
           background: var(--black);
           color: white;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14);
         }
 
-        .joinForm h3 {
-          margin: 0;
-          font-size: 25px;
-          letter-spacing: 1px;
+        .formHeader {
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          gap: 15px;
         }
 
-        .joinForm > p {
-          margin: 10px 0 25px;
-          color: #aaa;
-          font-size: 13px;
-          line-height: 1.7;
-        }
-
-        .joinForm label {
-          margin: 16px 0 8px;
+        .formKicker {
+          color: var(--red);
           font-size: 9px;
-          font-weight: 800;
+          font-weight: 900;
           letter-spacing: 1.5px;
         }
 
+        .formHeader h3 {
+          margin: 12px 0 0;
+          font-size: 26px;
+          font-weight: 950;
+          letter-spacing: -0.8px;
+        }
+
+        .formIcon {
+          color: var(--red);
+          font-size: 25px;
+        }
+
+        .formDescription {
+          margin: 13px 0 24px;
+          color: #aaa;
+          font-size: 12px;
+          line-height: 1.8;
+        }
+
+        .joinForm label {
+          margin: 17px 0 8px;
+          color: #ddd;
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 1.3px;
+        }
+
         .joinForm input,
-        .joinForm textarea {
+        .joinForm textarea,
+        .joinForm select {
           width: 100%;
-          padding: 13px 12px;
-          border: 1px solid #444;
+          min-height: 46px;
+          padding: 12px;
+          border: 1px solid #383838;
           border-radius: 0;
           outline: none;
-          background: #202020;
+          background: #171819;
           color: white;
-          font-size: 13px;
+          font-size: 12px;
         }
 
         .joinForm input:focus,
-        .joinForm textarea:focus {
+        .joinForm textarea:focus,
+        .joinForm select:focus {
           border-color: var(--red);
+        }
+
+        .joinForm input::placeholder,
+        .joinForm textarea::placeholder {
+          color: #777;
+        }
+
+        .joinForm select:invalid {
+          color: #777;
         }
 
         .joinForm textarea {
           resize: vertical;
         }
 
-        .submitButton {
-          width: 100%;
-          margin-top: 25px;
-        }
-
-        .support {
-          background: var(--paper);
-        }
-
-        .support .sectionHeading {
-          margin-bottom: 45px;
-        }
-
-        .supportGrid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 14px;
-          align-items: stretch;
-        }
-
-        .supportCard {
+        .formSubmit {
           display: flex;
-          min-height: 320px;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 25px;
-          border: 1px solid #d5d1c8;
-          background: #f8f7f3;
-          transition:
-            border-color 0.2s ease,
-            transform 0.2s ease;
-        }
-
-        .supportCard:hover {
-          transform: translateY(-4px);
-          border-color: var(--red);
-        }
-
-        .cardTop {
-          display: flex;
-          width: 100%;
+          min-height: 52px;
           align-items: center;
           justify-content: space-between;
+          gap: 15px;
+          margin-top: 24px;
+          padding: 0 16px;
+          border: 0;
+          background: var(--red);
+          color: white;
+          cursor: pointer;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: 1.2px;
+          transition: background 0.2s;
         }
 
-        .cardNumber {
-          color: var(--red);
-          font-size: 12px;
-          font-weight: 800;
+        .formSubmit:hover {
+          background: #c8192a;
         }
 
-        .cardMark {
+        .formSubmit span {
           font-size: 19px;
         }
 
-        .cardLabel {
-          margin: 32px 0 10px;
-          color: #777;
-          font-size: 9px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
+        .formNote {
+          margin: 14px 0 0;
+          color: #888;
+          font-size: 10px;
+          line-height: 1.7;
         }
 
-        .supportCard h3 {
-          margin: 0;
-          font-size: 23px;
-        }
-
-        .cardLine {
-          width: 40px;
-          height: 3px;
-          margin: 20px 0;
-          background: var(--red);
-        }
-
-        .supportCard > p:not(.cardLabel) {
-          margin: 0 0 22px;
-          color: #666;
-          font-size: 13px;
-          line-height: 1.8;
-        }
-
-        .cardLink {
-          margin-top: auto;
-          padding-bottom: 5px;
-          border-bottom: 1px solid var(--red);
-          font-size: 9px;
-          font-weight: 800;
-          letter-spacing: 1px;
-        }
+        /* CONTACT */
 
         .contact {
           background: var(--black);
           color: white;
         }
 
-        .contactGrid {
-          align-items: start;
+        .contact .sectionRule {
+          background: var(--line);
         }
 
-        .contactDescription {
-          max-width: 430px;
+        .contact .sectionLocation {
+          color: #aaa;
+        }
+
+        .contactGrid {
+          align-items: start;
+          gap: 75px;
+        }
+
+        .contact .bodyCopy {
+          max-width: 420px;
           margin-top: 25px;
           color: #aaa;
         }
 
-        .contactDetails {
+        .contactInfo {
           border-top: 1px solid var(--line);
         }
 
         .contactRow {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
+          display: grid;
+          grid-template-columns: 1fr 25px;
+          gap: 10px;
+          align-items: center;
           padding: 23px 0;
           border-bottom: 1px solid var(--line);
         }
 
         .contactRow > span {
+          grid-column: 1 / -1;
           color: var(--red);
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 1.7px;
+        }
+
+        .contactRow strong {
+          overflow-wrap: anywhere;
+          font-size: clamp(13px, 1.7vw, 17px);
+          font-weight: 700;
+        }
+
+        .contactRow i {
+          color: var(--red);
+          font-size: 20px;
+          font-style: normal;
+          transition: transform 0.2s;
+        }
+
+        .contactRow:hover i {
+          transform: translate(3px, -3px);
+        }
+
+        .contactRow:hover strong {
+          color: #ddd;
+        }
+
+        /* FOOTER */
+
+        .footer {
+          padding: 42px 7% 20px;
+          background: #050505;
+          color: white;
+        }
+
+        .footerBrand img {
+          width: 47px;
+          height: 47px;
+          object-fit: contain;
+        }
+
+        .footerMotto {
+          margin: 28px 0;
+          color: #aaa;
           font-size: 9px;
           font-weight: 800;
           letter-spacing: 2px;
         }
 
-        .contactRow > a,
-        .contactRow > p {
-          margin: 0;
-          font-size: 15px;
-          overflow-wrap: anywhere;
-        }
-
-        .contactRow > a:hover {
-          color: var(--red);
-        }
-
-        .contactSocials {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 20px;
-          margin-top: 25px;
-        }
-
-        .contactSocials a {
-          padding-bottom: 6px;
-          border-bottom: 1px solid var(--red);
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 1px;
-        }
-
-        .footer {
-          padding: 40px 7% 20px;
-          background: #080808;
-          color: white;
-        }
-
-        .footerBrand img {
-          width: 45px;
-          height: 45px;
-          object-fit: contain;
-        }
-
-        .footer > p {
-          margin: 30px 0;
-          color: #aaa;
-          font-size: 10px;
-          letter-spacing: 2px;
-        }
-
         .footerBottom {
           display: flex;
+          align-items: center;
           justify-content: space-between;
-          gap: 15px;
+          gap: 18px;
           padding-top: 20px;
-          border-top: 1px solid #303030;
-          color: #999;
+          border-top: 1px solid #282828;
+          color: #888;
           font-size: 10px;
+          line-height: 1.7;
         }
 
         .footerBottom a {
           color: white;
-          font-weight: 800;
+          font-weight: 900;
           letter-spacing: 1px;
         }
 
@@ -1394,211 +1780,455 @@ export default function Home() {
           color: var(--red);
         }
 
-        @media (max-width: 1000px) {
+        /* ANIMATIONS */
+
+        @keyframes heroEnter {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes logoFloat {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+
+        @keyframes batSwing {
+          0%, 100% {
+            transform: rotate(-24deg);
+          }
+          40% {
+            transform: rotate(10deg);
+          }
+          50% {
+            transform: rotate(30deg);
+          }
+          65% {
+            transform: rotate(-5deg);
+          }
+        }
+
+        @keyframes ballFlight {
+          0%, 10% {
+            opacity: 0;
+            transform: translate(-20px, 55px) scale(0.7);
+          }
+          20% {
+            opacity: 1;
+          }
+          48% {
+            opacity: 1;
+            transform: translate(70px, -65px) scale(1);
+          }
+          70%, 100% {
+            opacity: 0;
+            transform: translate(140px, -100px) scale(0.55);
+          }
+        }
+
+        @keyframes shadowPulse {
+          0%, 100% {
+            transform: scaleX(0.8);
+            opacity: 0.5;
+          }
+          50% {
+            transform: scaleX(1.1);
+            opacity: 0.8;
+          }
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1050px) {
           .navbar {
             padding-right: 4%;
             padding-left: 4%;
           }
 
           .navLinks {
-            gap: 14px;
+            gap: 13px;
           }
 
           .navLinks a {
-            font-size: 9px;
+            font-size: 8px;
+            letter-spacing: 0.7px;
+          }
+
+          .brandWords {
+            font-size: 11px;
+          }
+
+          .brandLogo {
+            width: 42px;
+            height: 42px;
           }
 
           .section {
-            padding: 80px 5%;
+            padding-right: 5%;
+            padding-left: 5%;
           }
 
-          .supportGrid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+          .introGrid,
+          .historyHeading,
+          .groundGrid,
+          .galleryHeading,
+          .joinGrid,
+          .contactGrid {
+            gap: 35px;
           }
 
-          .galleryGrid {
-            grid-template-columns: 1fr 1fr;
-          }
-
-          .galleryCallout {
-            grid-column: span 2;
-            min-height: 210px;
+          .batStage {
+            right: 4%;
+            transform: scale(0.8) rotate(-8deg);
+            transform-origin: bottom right;
           }
         }
 
-        @media (max-width: 700px) {
+        /* MOBILE */
+
+        @media (max-width: 720px) {
           html {
-            scroll-padding-top: 65px;
+            scroll-padding-top: 72px;
           }
 
           .navbar {
-            position: absolute;
             min-height: 72px;
             padding: 10px 5%;
           }
 
           .brand {
-            gap: 8px;
-            font-size: 12px;
+            gap: 9px;
           }
 
-          .brand .logo {
-            width: 43px;
-            height: 43px;
+          .brandLogo {
+            width: 42px;
+            height: 42px;
           }
 
-          .brand small {
-            font-size: 8px;
+          .brandWords {
+            font-size: 11px;
+            letter-spacing: 0.8px;
+          }
+
+          .brandWords small {
+            font-size: 7px;
             letter-spacing: 2px;
           }
 
-          .menuButton {
+          .menuToggle {
             display: block;
           }
 
           .navLinks {
             position: absolute;
-            top: 72px;
+            top: 71px;
             right: 0;
             left: 0;
             display: none;
             flex-direction: column;
             align-items: stretch;
             gap: 0;
-            padding: 8px 5% 18px;
-            background: #111;
+            padding: 8px 6% 18px;
+            border-bottom: 1px solid #333;
+            background: #090a0b;
           }
 
-          .navLinks.open {
+          .navLinks.navOpen {
             display: flex;
           }
 
           .navLinks a {
-            padding: 15px 0;
-            border-bottom: 1px solid #303030;
-            font-size: 11px;
+            padding: 16px 0;
+            border-bottom: 1px solid #252525;
+            font-size: 10px;
+            letter-spacing: 1.2px;
           }
 
           .hero {
-            min-height: 720px;
+            min-height: 760px;
             min-height: 100svh;
           }
 
+          .heroShade {
+            background:
+              linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.82),
+                rgba(0, 0, 0, 0.48)
+              ),
+              linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.82),
+                transparent 65%
+              );
+          }
+
           .heroContent {
-            padding: 130px 6% 35px;
+            padding: 112px 6% 110px;
           }
 
-          .hero h1 {
-            font-size: clamp(43px, 12vw, 68px);
-            letter-spacing: -2px;
+          .heroLogoWrap {
+            width: 85px;
+            height: 85px;
+            margin-bottom: 24px;
           }
 
-          .heroDescription {
-            font-size: 14px;
+          .heroTitle {
+            font-size: clamp(48px, 12vw, 78px);
+            letter-spacing: -2.8px;
+          }
+
+          .heroEyebrow {
+            font-size: 9px;
+            letter-spacing: 1.5px;
+          }
+
+          .heroSubline {
+            max-width: 250px;
+            font-size: 8px;
+            line-height: 1.9;
+            letter-spacing: 1.7px;
+          }
+
+          .heroCta {
+            min-width: 205px;
+            min-height: 55px;
+          }
+
+          .batStage {
+            right: 1%;
+            bottom: 13%;
+            opacity: 0.78;
+            transform: scale(0.63) rotate(-8deg);
+            transform-origin: bottom right;
           }
 
           .heroBottom {
+            right: 5%;
+            bottom: 20px;
+            left: 5%;
             flex-direction: column;
-            margin-top: 55px;
+            align-items: flex-start;
+            gap: 11px;
             font-size: 8px;
+            letter-spacing: 1px;
+          }
+
+          .heroSideLabel {
+            display: none;
           }
 
           .section {
-            padding: 65px 6%;
+            padding: 72px 6%;
           }
 
-          .sectionLabel {
-            margin-bottom: 35px;
+          .sectionTopline {
+            gap: 10px;
+            margin-bottom: 40px;
+          }
+
+          .sectionNumber,
+          .sectionLocation {
+            font-size: 7px;
+            letter-spacing: 0.8px;
+          }
+
+          .displayHeading {
+            font-size: clamp(40px, 10.5vw, 65px);
+            letter-spacing: -2px;
           }
 
           .introGrid,
-          .sectionHeading,
+          .historyHeading,
           .groundGrid,
+          .galleryHeading,
           .joinGrid,
           .contactGrid {
             grid-template-columns: 1fr;
-            gap: 25px;
+            gap: 27px;
           }
 
-          .section h2 {
-            font-size: clamp(39px, 10vw, 60px);
-            letter-spacing: -1.5px;
+          .introCopy {
+            padding-top: 0;
           }
 
-          .teamImageWrap {
+          .largeCopy {
+            font-size: 23px;
+          }
+
+          .featureImage {
             height: 320px;
             margin-top: 35px;
           }
 
+          .featureImageCaption {
+            right: 14px;
+            bottom: 14px;
+            left: 14px;
+            font-size: 7px;
+            letter-spacing: 1px;
+          }
+
+          .historyHeading {
+            margin-bottom: 38px;
+          }
+
           .timelineItem {
-            grid-template-columns: 48px 12px 1fr;
-            gap: 12px;
-            padding: 21px 0;
+            grid-template-columns: 24px 43px minmax(0, 1fr) 16px;
+            gap: 9px;
+            padding: 22px 0;
+          }
+
+          .timelineIndex {
+            font-size: 8px;
           }
 
           .timelineYear {
             font-size: 10px;
           }
 
-          .timelineItem h3 {
-            font-size: 14px;
+          .timelineContent h3 {
+            font-size: 11px;
+            line-height: 1.5;
           }
 
-          .timelineItem p {
-            font-size: 12px;
+          .timelineContent p {
+            font-size: 11px;
           }
 
-          .groundImageLink {
-            min-height: 280px;
+          .timelineArrow {
+            font-size: 15px;
           }
 
-          .groundImage {
-            height: 300px;
+          .groundGrid {
+            gap: 35px;
+          }
+
+          .groundPhoto {
+            min-height: 310px;
+          }
+
+          .groundPhotoLabel {
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+            padding: 13px;
+            font-size: 8px;
+          }
+
+          .galleryHeading .darkButton {
+            justify-self: start;
           }
 
           .galleryGrid {
             grid-template-columns: 1fr;
-          }
-
-          .galleryItem,
-          .galleryItem img {
-            min-height: 250px;
-          }
-
-          .galleryCallout {
-            grid-column: auto;
-            min-height: 230px;
-          }
-
-          .joinForm {
-            padding: 25px 20px;
-          }
-
-          .supportGrid {
-            grid-template-columns: 1fr;
             gap: 12px;
           }
 
-          .supportCard {
-            min-height: 275px;
-            padding: 24px;
+          .galleryPhoto {
+            height: 290px;
+          }
+
+          .galleryFooter {
+            flex-direction: column;
+            gap: 13px;
+            font-size: 8px;
+            line-height: 1.7;
+          }
+
+          .joinBackdrop {
+            top: 160px;
+            right: -20px;
+            font-size: 300px;
+          }
+
+          .joinGrid {
+            gap: 40px;
+          }
+
+          .joinForm {
+            padding: 24px 18px;
+          }
+
+          .formHeader h3 {
+            font-size: 23px;
+          }
+
+          .contactGrid {
+            gap: 35px;
+          }
+
+          .contactRow {
+            padding: 20px 0;
+          }
+
+          .contactRow strong {
+            font-size: 13px;
           }
 
           .footer {
-            padding: 35px 6% 20px;
+            padding: 32px 6% 20px;
+          }
+
+          .footerBrand > span {
+            font-size: 11px;
           }
 
           .footerBottom {
+            align-items: flex-start;
             flex-direction: column;
-            line-height: 1.8;
+            gap: 12px;
           }
         }
+
+        @media (max-width: 380px) {
+          .brandWords {
+            font-size: 10px;
+          }
+
+          .heroTitle {
+            font-size: 45px;
+          }
+
+          .batStage {
+            right: -10px;
+            opacity: 0.58;
+            transform: scale(0.48) rotate(-8deg);
+            transform-origin: bottom right;
+          }
+
+          .sectionLocation {
+            display: none;
+          }
+
+          .sectionRule {
+            display: block;
+          }
+
+          .timelineItem {
+            grid-template-columns: 20px 37px minmax(0, 1fr) 12px;
+            gap: 7px;
+          }
+        }
+
+        /* ACCESSIBILITY */
 
         @media (prefers-reduced-motion: reduce) {
           *,
           *::before,
           *::after {
             scroll-behavior: auto !important;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
           }
         }
